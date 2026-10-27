@@ -1,0 +1,331 @@
+{
+ "generado_utc": "2026-10-27T00:15:08+00:00",
+ "revision_origen": "8f2fd4c650fd88c6e6ff6c430cf96f7bb7efa44e",
+ "n_archivos": 54,
+ "archivos": [
+  {
+   "archivo": "tabla_maestra_val_v2.csv",
+   "origen": "demo/paper_material/tabla_maestra_val_v2.csv",
+   "commit": "c895952c3d58bdb13d4dfacf797f1a31063e3a45",
+   "sha256": "5ab5cd8f1afc15abf806f2dbdf495312f1530d392de637180013c61e572c0be1"
+  },
+  {
+   "archivo": "costa_galicia_ne10m.geojson",
+   "origen": "demo/app/validacion_v2/datos/costa_galicia_ne10m.geojson",
+   "commit": "8f2fd4c650fd88c6e6ff6c430cf96f7bb7efa44e",
+   "sha256": "6b1f1ae503db99beffaae5537abd2729d67d072bb7e51c3ca4628e038939be5a"
+  },
+  {
+   "archivo": "trazas/swot_t197_reference.json",
+   "origen": "demo/static/reference_tracks/swot_t197_reference.json",
+   "commit": "8a79533385cb5aa512cb476e87549cb4245f760d",
+   "sha256": "f23973d1411ad714375aecd2a12a26b0452186386cd384498267315796afc5f2"
+  },
+  {
+   "archivo": "trazas/swot_t154_reference.json",
+   "origen": "demo/static/reference_tracks/swot_t154_reference.json",
+   "commit": "07cb13dcb4a218a9e31d1406b671654124a2fdd3",
+   "sha256": "40920793b8af19aa05378ad8185b5fc7d94fbd84d657c27665f85c9754a40790"
+  },
+  {
+   "archivo": "series/cibrao_t197_r6km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/cibrao_t197_r6km.csv",
+   "commit": "bbfb5b66e66a778772e7c8237d1a3323156b556d",
+   "sha256": "20b836aaaf032a27f3a690becd0885ba4429797c97b2bcc2729bd2bb86b47fc6"
+  },
+  {
+   "archivo": "series/cibrao_t197_r8km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/cibrao_t197_r8km.csv",
+   "commit": "bbfb5b66e66a778772e7c8237d1a3323156b556d",
+   "sha256": "934933adb066796ce7a4b98e9042d0c67dd8347b2a598350a9089b0cac61bff4"
+  },
+  {
+   "archivo": "series/cibrao_t197_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/cibrao_t197_r10km.csv",
+   "commit": "0c5941826d79ff144264f489cbdb45d1ca9aa3f2",
+   "sha256": "a1a4165eb6e8653ea4286c338889195c4174b6a41e654a13a5e043df41a6db02"
+  },
+  {
+   "archivo": "series/coruna_t197_r6km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/coruna_t197_r6km.csv",
+   "commit": "8f17d9c0f9c2555b06c574d752e1549a4e68095c",
+   "sha256": "8d05fd00db1d4f95894cdbb9908ace9f4b0beb55d26a4d14a5b6bad7a06484b3"
+  },
+  {
+   "archivo": "series/coruna_t197_r8km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/coruna_t197_r8km.csv",
+   "commit": "8f17d9c0f9c2555b06c574d752e1549a4e68095c",
+   "sha256": "c8cb15e1689f569fb8d435170fccaec43cc3a3ade2ff09deb365f12699946e6c"
+  },
+  {
+   "archivo": "series/coruna_t197_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/coruna_t197_r10km.csv",
+   "commit": "f66e8e1e9f945f5524b94f08b746e2431877a050",
+   "sha256": "b25269bc88de84c25b14e055caf77b90be5848bcf3cdb6f2846169f5d6f9dfeb"
+  },
+  {
+   "archivo": "series/ferrol_t197_r6km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/ferrol_t197_r6km.csv",
+   "commit": "8f17d9c0f9c2555b06c574d752e1549a4e68095c",
+   "sha256": "5d384d9c2a12d78f4315160099aaf8e1b5db41c353f1ed8f729104174d426063"
+  },
+  {
+   "archivo": "series/ferrol_t197_r8km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/ferrol_t197_r8km.csv",
+   "commit": "8f17d9c0f9c2555b06c574d752e1549a4e68095c",
+   "sha256": "054ffac1705d6040201116d39a234d337a1dd87aaebea20bff9bb6991f98c7de"
+  },
+  {
+   "archivo": "series/ferrol_t197_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/ferrol_t197_r10km.csv",
+   "commit": "c0d7d182972389a57da8fd91796fd970044be272",
+   "sha256": "b793c5b1abb417987c7c8667f9322e1157aee707067d9af46820cb022d724b37"
+  },
+  {
+   "archivo": "series/langosteira_2_t197_r6km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/langosteira_2_t197_r6km.csv",
+   "commit": "8f17d9c0f9c2555b06c574d752e1549a4e68095c",
+   "sha256": "fc5139ea0177d296c06ae605f6bd2755ad6761586a691c47e3ef8856b1c59725"
+  },
+  {
+   "archivo": "series/langosteira_2_t197_r8km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/langosteira_2_t197_r8km.csv",
+   "commit": "8f17d9c0f9c2555b06c574d752e1549a4e68095c",
+   "sha256": "1056714655cba9523289d77cb3f9aca33ca5c50c397a09a352ba26a0d5fa9d76"
+  },
+  {
+   "archivo": "series/langosteira_2_t197_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/langosteira_2_t197_r10km.csv",
+   "commit": "bb2252cc0fb1eda875c5c079834b04a83a6fd253",
+   "sha256": "2dab75ca92563cb7940bb7568a3d9e07e69eb719c937e21c1471637a834bd9d9"
+  },
+  {
+   "archivo": "series/villagarcia_t197_r6km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/villagarcia_t197_r6km.csv",
+   "commit": "bbfb5b66e66a778772e7c8237d1a3323156b556d",
+   "sha256": "b42951f0d8c4b1a2dd9421bd4c0a1bec55415380e24f0a6a1f9645822a80d4ec"
+  },
+  {
+   "archivo": "series/villagarcia_t197_r8km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/villagarcia_t197_r8km.csv",
+   "commit": "bbfb5b66e66a778772e7c8237d1a3323156b556d",
+   "sha256": "e96fda90393913d65848bb8c27b35e86308efca5d283a19ce6a91e65f16f065d"
+  },
+  {
+   "archivo": "series/villagarcia_t197_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/villagarcia_t197_r10km.csv",
+   "commit": "0c5941826d79ff144264f489cbdb45d1ca9aa3f2",
+   "sha256": "0b8c3639917c45e8dfb29b1a4f2f70b040876aa7e0c99fff282a19019818fa47"
+  },
+  {
+   "archivo": "series/marin_t197_r6km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/marin_t197_r6km.csv",
+   "commit": "8f17d9c0f9c2555b06c574d752e1549a4e68095c",
+   "sha256": "6e8c918a0b88269af45393ad4735aa2fa840a0480e7684246ef84e8b081e2cf4"
+  },
+  {
+   "archivo": "series/marin_t197_r8km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/marin_t197_r8km.csv",
+   "commit": "8f17d9c0f9c2555b06c574d752e1549a4e68095c",
+   "sha256": "fd40de4cc784f3a6c3240296a62b991b6443bf746ee0ce528d6944eaa1587d09"
+  },
+  {
+   "archivo": "series/marin_t197_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/marin_t197_r10km.csv",
+   "commit": "8b1fb1dfd10589586a0ab72c0144b06646ef64ca",
+   "sha256": "e5172d962ffd5cbd8d76db1892b590a5a1dfc25955de0fee4060926f4ad35f37"
+  },
+  {
+   "archivo": "series/vigo_t197_r6km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/vigo_t197_r6km.csv",
+   "commit": "8f17d9c0f9c2555b06c574d752e1549a4e68095c",
+   "sha256": "5fce43ede5990b95459ecccfdca80252c7f3b459c813f082bee818a7728daf41"
+  },
+  {
+   "archivo": "series/vigo_t197_r8km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/vigo_t197_r8km.csv",
+   "commit": "8f17d9c0f9c2555b06c574d752e1549a4e68095c",
+   "sha256": "e8c3921671c0d7c8aa190ae3dfb0ea822bed1f0a586432f06b1e903da3592000"
+  },
+  {
+   "archivo": "series/vigo_t197_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/vigo_t197_r10km.csv",
+   "commit": "c9dd036dc7a167a277afc0d0abe36ac33438624f",
+   "sha256": "a1ed743abfac08cd45ad2c483bbd46ca99b2db948e4ac8186496268604129afe"
+  },
+  {
+   "archivo": "series/coruna_t154_r6km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/coruna_t154_r6km.csv",
+   "commit": "05f62d5dd6acda7aeb614c1d80b76bbdeb130d96",
+   "sha256": "a122edd5141e12f15d7c4b343784ba32fbff07c7e11991b8eab0febb9eafed30"
+  },
+  {
+   "archivo": "series/coruna_t154_r8km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/coruna_t154_r8km.csv",
+   "commit": "05f62d5dd6acda7aeb614c1d80b76bbdeb130d96",
+   "sha256": "d29f9bfd1f4866bd186d9745937bc033657409048ac10f56751c73e5d15ac06b"
+  },
+  {
+   "archivo": "series/coruna_t154_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/coruna_t154_r10km.csv",
+   "commit": "0e8710f05697fc3510158a51545c437ff712a1bc",
+   "sha256": "fa07551f79781f24d4aacca1365fc192190be8abf8981d72cc4854cf315e6eb7"
+  },
+  {
+   "archivo": "series/ferrol_t154_r6km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/ferrol_t154_r6km.csv",
+   "commit": "05f62d5dd6acda7aeb614c1d80b76bbdeb130d96",
+   "sha256": "63bc66984dc197a1edaffd0afc45ae565889934a1c903f7fe78d06c2eca40116"
+  },
+  {
+   "archivo": "series/ferrol_t154_r8km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/ferrol_t154_r8km.csv",
+   "commit": "05f62d5dd6acda7aeb614c1d80b76bbdeb130d96",
+   "sha256": "7d16bca7e9a7d2e0263753c52050251d60f5cec6fbce3c8e9ec396e3834a1ed0"
+  },
+  {
+   "archivo": "series/ferrol_t154_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/ferrol_t154_r10km.csv",
+   "commit": "bab15654a332854ddb14f25ab02a3e073793409e",
+   "sha256": "ebd12c7516f50011970682e0d88a8fefabc8bce9e21ef77a0ecb1a4e2dd6818a"
+  },
+  {
+   "archivo": "series/langosteira_2_t154_r6km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/langosteira_2_t154_r6km.csv",
+   "commit": "05f62d5dd6acda7aeb614c1d80b76bbdeb130d96",
+   "sha256": "efbb8b6ce6d746ea1fac4980891ec94a231a8f1bc2fb6c78f51b14d903e7ade1"
+  },
+  {
+   "archivo": "series/langosteira_2_t154_r8km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/langosteira_2_t154_r8km.csv",
+   "commit": "05f62d5dd6acda7aeb614c1d80b76bbdeb130d96",
+   "sha256": "325c5c4579393c50be81f80d1d3e43dda111342f831d4249c1b1df7138cdf716"
+  },
+  {
+   "archivo": "series/langosteira_2_t154_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/langosteira_2_t154_r10km.csv",
+   "commit": "72cb730e4443812a4d02b5413f1f6fd639509731",
+   "sha256": "a0acd1a34c4a9d194076730938540fd2c9c563c92823f5dd841d1cb46beed25b"
+  },
+  {
+   "archivo": "series/villagarcia_t154_r6km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/villagarcia_t154_r6km.csv",
+   "commit": "05f62d5dd6acda7aeb614c1d80b76bbdeb130d96",
+   "sha256": "0e88e74e29e0f2442b84f955d4c428da34cdd162567decc3c7a7f0a2add50017"
+  },
+  {
+   "archivo": "series/villagarcia_t154_r8km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/villagarcia_t154_r8km.csv",
+   "commit": "05f62d5dd6acda7aeb614c1d80b76bbdeb130d96",
+   "sha256": "ea6e44c863afadd1a0ac0b18fceeffde75524ed41640b4e36b7948278293e225"
+  },
+  {
+   "archivo": "series/villagarcia_t154_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/villagarcia_t154_r10km.csv",
+   "commit": "220660cad26b5286dc0219082d517ce310a0b259",
+   "sha256": "1e0fe6ddbc59277bb241839a7ada4e1ed3bae4b703d7da2f2048d503fcf574f6"
+  },
+  {
+   "archivo": "series/marin_t154_r6km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/marin_t154_r6km.csv",
+   "commit": "05f62d5dd6acda7aeb614c1d80b76bbdeb130d96",
+   "sha256": "db3d81216a0f3617dd34c17ad8d195995433ac86d779603bc6ae76c4621eb559"
+  },
+  {
+   "archivo": "series/marin_t154_r8km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/marin_t154_r8km.csv",
+   "commit": "05f62d5dd6acda7aeb614c1d80b76bbdeb130d96",
+   "sha256": "55ce00b22ddcbc12faef15baf649c644d6f2422364fc3b970a4975d511755b13"
+  },
+  {
+   "archivo": "series/marin_t154_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/marin_t154_r10km.csv",
+   "commit": "99a27b939e8ef0e0d5a6113605bbd55767b05b31",
+   "sha256": "6cb81fc6868d370909101ee21df692d81afc8e833e7ddc225573fa69262af1f0"
+  },
+  {
+   "archivo": "series/vigo_t154_r6km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/vigo_t154_r6km.csv",
+   "commit": "05f62d5dd6acda7aeb614c1d80b76bbdeb130d96",
+   "sha256": "c42ce0584b3928290c760bbce39ff906498a7d30cb85e5dd8df839940860e41b"
+  },
+  {
+   "archivo": "series/vigo_t154_r8km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/vigo_t154_r8km.csv",
+   "commit": "05f62d5dd6acda7aeb614c1d80b76bbdeb130d96",
+   "sha256": "d13fb99114f9d7cd43be5e2b7e8bbff90624f625e79ebcbaf15b58cbd8040572"
+  },
+  {
+   "archivo": "series/vigo_t154_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/vigo_t154_r10km.csv",
+   "commit": "864e17a12167766169b00d11ea37f438700ba021",
+   "sha256": "b977b3d33c2b1aa9d694af852a4b16db1a1151520c1c7e6ee7f7bd75363dd503"
+  },
+  {
+   "archivo": "series/descomposicion/descomposicion_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/descomposicion/descomposicion_r10km.csv",
+   "commit": "3bd81942a3de97bbb50c95961ce1e46ecbc59b6b",
+   "sha256": "f790ab5cbf0d59eb5dd8f58b3910c39c9858d8712bb569283ead7ac67015a727"
+  },
+  {
+   "archivo": "series/descomposicion/descomposicion_correlaciones_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/descomposicion/descomposicion_correlaciones_r10km.csv",
+   "commit": "045e1330dc67b9c981d248b767fea9723c405964",
+   "sha256": "7262a1aaeb7b6ce40337b6126062d278afd6c6e7775474f3923fdc993592a463"
+  },
+  {
+   "archivo": "series/descomposicion/descomposicion_robustez_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/descomposicion/descomposicion_robustez_r10km.csv",
+   "commit": "389783426111447e3f62b2de1bb098427e1f4e8a",
+   "sha256": "ca154b6377400b69d80ec44d994c9d335692dda5c8cd3cd6ffaac02c9b4d367e"
+  },
+  {
+   "archivo": "series/comparacion_tracks/comparacion_t154_t197_r10km.json",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/comparacion_tracks/comparacion_t154_t197_r10km.json",
+   "commit": "ac5dc9284134c2523c8edff1401a07f54a86a828",
+   "sha256": "1b1fa742fd0d1eca9dd77c58809b716d9726ff79eac27be7e08fb8a541de14c3"
+  },
+  {
+   "archivo": "series/robustez_modo_comun/robustez_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/robustez_modo_comun/robustez_r10km.csv",
+   "commit": "63fe7ee14c736d54d293072c3df9887807c315df",
+   "sha256": "484e83035ca690a06a5bf3340cc69f9122bdca2ced934be40091f5e0fa8aa2ea"
+  },
+  {
+   "archivo": "series/robustez_modo_comun/robustez_r6km_comun6_8_10.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/robustez_modo_comun/robustez_r6km_comun6_8_10.csv",
+   "commit": "63fe7ee14c736d54d293072c3df9887807c315df",
+   "sha256": "c0e900d846f786f692789f901ada093dd9c70fd2e348b0db595cf18e4b998cc2"
+  },
+  {
+   "archivo": "series/robustez_modo_comun/robustez_r8km_comun6_8_10.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/robustez_modo_comun/robustez_r8km_comun6_8_10.csv",
+   "commit": "63fe7ee14c736d54d293072c3df9887807c315df",
+   "sha256": "d29b4453f74e8a3c894b8af0a1e3f83d858c92142b5e87aa015f56b21d3e7252"
+  },
+  {
+   "archivo": "series/robustez_modo_comun/robustez_r10km_comun6_8_10.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/robustez_modo_comun/robustez_r10km_comun6_8_10.csv",
+   "commit": "63fe7ee14c736d54d293072c3df9887807c315df",
+   "sha256": "67f19a68bec7ec9ce99f6a4113008ecec4e3e263dfd9a92fd3126b5b086898b8"
+  },
+  {
+   "archivo": "series/robustez_modo_comun/persistencia_mareografos_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/robustez_modo_comun/persistencia_mareografos_r10km.csv",
+   "commit": "b775eae1f74082e868e3383c775e7fe08e6492e4",
+   "sha256": "1a0be9eaae0aabd0dc51edfa3d078526a54915ce51d858285a0301ed50c890df"
+  },
+  {
+   "archivo": "series/comparacion_estaciones/comparacion_t197_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/comparacion_estaciones/comparacion_t197_r10km.csv",
+   "commit": "f640b6f8d0926e00eba45052b88e24341526ec7c",
+   "sha256": "a7fe0e220e7dce724ce6027925d6d11b673461803556ada46bee63fed7887bee"
+  },
+  {
+   "archivo": "series/comparacion_estaciones/comparacion_t154_r10km.csv",
+   "origen": "demo/tests/all_cycles/series/pass_v2.2/comparacion_estaciones/comparacion_t154_r10km.csv",
+   "commit": "235851de264a65bd2a4010b90d89ec97aa5d5a28",
+   "sha256": "94e45d580d994ed8905f98164f9a371a0a81e4bd832727c9add193c4df702836"
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+group,series,n,cycles,r,r_detrended,slope_x_cm_per_year,slope_y_cm_per_year,loo_min_r,loo_min_without,loo_detr_min_r,loo_detr_min_without,t154_set,t197_set,shared_tide_gauges,disjoint_tide_gauges
+station_t154_vs_t197_same_cycles,coruna,21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.933,0.927,-4.97,-4.09,0.917,5,0.912,8,,,,
+station_t154_vs_t197_own_sample,coruna,21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.933,0.927,-4.97,-4.09,0.917,5,0.912,8,,,,
+station_t154_vs_t197_same_cycles,ferrol,21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.943,0.928,-9.18,-9.86,0.926,5,0.913,5,,,,
+station_t154_vs_t197_own_sample,ferrol,21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.943,0.928,-9.18,-9.86,0.926,5,0.913,5,,,,
+common_mode_sets_same_cycles,T154[coruna] vs T197[cibrao],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.896,0.885,-4.97,-7.12,0.871,5,0.865,8,coruna,cibrao,,True
+common_mode_sets_same_cycles,T154[coruna] vs T197[coruna],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.933,0.927,-4.97,-4.09,0.917,5,0.912,8,coruna,coruna,coruna_2,False
+common_mode_sets_same_cycles,T154[coruna] vs T197[ferrol],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.889,0.885,-4.97,-9.86,0.861,5,0.865,5,coruna,ferrol,,True
+common_mode_sets_same_cycles,T154[coruna] vs T197[cibrao+coruna],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.94,0.933,-4.97,-5.61,0.926,5,0.92,8,coruna,cibrao+coruna,coruna_2,False
+common_mode_sets_same_cycles,T154[coruna] vs T197[cibrao+ferrol],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.92,0.921,-4.97,-8.49,0.901,5,0.908,5,coruna,cibrao+ferrol,,True
+common_mode_sets_same_cycles,T154[coruna] vs T197[coruna+ferrol],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.924,0.917,-4.97,-6.98,0.906,5,0.903,5,coruna,coruna+ferrol,coruna_2,False
+common_mode_sets_same_cycles,T154[coruna] vs T197[cibrao+coruna+ferrol],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.936,0.932,-4.97,-7.03,0.921,5,0.921,5,coruna,cibrao+coruna+ferrol,coruna_2,False
+common_mode_sets_same_cycles,T154[ferrol] vs T197[cibrao],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.874,0.842,-9.18,-7.12,0.84,5,0.815,5,ferrol,cibrao,,True
+common_mode_sets_same_cycles,T154[ferrol] vs T197[coruna],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.886,0.886,-9.18,-4.09,0.854,5,0.863,5,ferrol,coruna,,True
+common_mode_sets_same_cycles,T154[ferrol] vs T197[ferrol],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.943,0.928,-9.18,-9.86,0.926,5,0.913,5,ferrol,ferrol,ferrol_1,False
+common_mode_sets_same_cycles,T154[ferrol] vs T197[cibrao+coruna],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.905,0.889,-9.18,-5.61,0.878,5,0.868,5,ferrol,cibrao+coruna,,True
+common_mode_sets_same_cycles,T154[ferrol] vs T197[cibrao+ferrol],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.941,0.924,-9.18,-8.49,0.923,5,0.909,5,ferrol,cibrao+ferrol,ferrol_1,False
+common_mode_sets_same_cycles,T154[ferrol] vs T197[coruna+ferrol],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.937,0.923,-9.18,-6.98,0.918,5,0.907,5,ferrol,coruna+ferrol,ferrol_1,False
+common_mode_sets_same_cycles,T154[ferrol] vs T197[cibrao+coruna+ferrol],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.937,0.922,-9.18,-7.03,0.919,5,0.907,5,ferrol,cibrao+coruna+ferrol,ferrol_1,False
+common_mode_sets_same_cycles,T154[coruna+ferrol] vs T197[cibrao],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.896,0.874,-7.07,-7.12,0.869,5,0.851,8,coruna+ferrol,cibrao,,True
+common_mode_sets_same_cycles,T154[coruna+ferrol] vs T197[coruna],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.92,0.917,-7.07,-4.09,0.897,5,0.901,5,coruna+ferrol,coruna,coruna_2,False
+common_mode_sets_same_cycles,T154[coruna+ferrol] vs T197[ferrol],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.933,0.922,-7.07,-9.86,0.914,5,0.907,5,coruna+ferrol,ferrol,ferrol_1,False
+common_mode_sets_same_cycles,T154[coruna+ferrol] vs T197[cibrao+coruna],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.934,0.922,-7.07,-5.61,0.915,5,0.907,5,coruna+ferrol,cibrao+coruna,coruna_2,False
+common_mode_sets_same_cycles,T154[coruna+ferrol] vs T197[cibrao+ferrol],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.946,0.936,-7.07,-8.49,0.93,5,0.924,5,coruna+ferrol,cibrao+ferrol,ferrol_1,False
+common_mode_sets_same_cycles,T154[coruna+ferrol] vs T197[coruna+ferrol],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.945,0.934,-7.07,-6.98,0.929,5,0.921,5,coruna+ferrol,coruna+ferrol,coruna_2+ferrol_1,False
+common_mode_sets_same_cycles,T154[coruna+ferrol] vs T197[cibrao+coruna+ferrol],21,1 5 6 7 8 9 10 11 12 13 15 16 17 19 20 23 24 26 27 28 29,0.951,0.94,-7.07,-7.03,0.937,5,0.929,5,coruna+ferrol,cibrao+coruna+ferrol,coruna_2+ferrol_1,False

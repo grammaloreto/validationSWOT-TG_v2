@@ -1,0 +1,15 @@
+track,scope,station,variable,n,r,r_detrended,loo_min,loo_min_without,loo_detrended_min,loo_detrended_min_without,slope_x_cm_per_year,slope_d_cm_per_year
+197,track_mean_vs_common_mode,cibrao+coruna+ferrol,tide_prediction_difference_m,24,0.87,0.851,0.839,5,0.828,5,-6.85,-5.9
+197,track_mean_vs_common_mode,cibrao+coruna+ferrol,agg_ssha_unfiltered,24,0.693,0.691,0.602,5,0.619,5,-2.63,-5.9
+197,station_vs_own_d,cibrao,tide_prediction_difference_m,24,0.868,0.852,0.844,5,0.823,22,-5.58,-5.42
+197,station_vs_own_d,cibrao,agg_ssha_unfiltered,24,0.658,0.633,0.592,5,0.58,5,-3.99,-5.42
+197,station_vs_own_d,coruna,tide_prediction_difference_m,24,0.79,0.781,0.737,5,0.74,5,-5.09,-3.42
+197,station_vs_own_d,coruna,agg_ssha_unfiltered,24,0.688,0.687,0.6,5,0.613,5,-1.69,-3.42
+197,station_vs_own_d,ferrol,tide_prediction_difference_m,24,0.893,0.862,0.868,28,0.836,1,-9.88,-8.85
+197,station_vs_own_d,ferrol,agg_ssha_unfiltered,24,0.701,0.729,0.595,5,0.659,5,-2.21,-8.85
+154,track_mean_vs_common_mode,coruna+ferrol,tide_prediction_difference_m,25,0.865,0.857,0.833,5,0.831,5,-5.06,-3.76
+154,track_mean_vs_common_mode,coruna+ferrol,agg_ssha_unfiltered,25,0.689,0.679,0.602,5,0.603,5,-2.63,-3.76
+154,station_vs_own_d,coruna,tide_prediction_difference_m,25,0.822,0.817,0.782,5,0.782,5,-3.03,-2.27
+154,station_vs_own_d,coruna,agg_ssha_unfiltered,25,0.722,0.714,0.655,5,0.654,5,-2.7,-2.27
+154,station_vs_own_d,ferrol,tide_prediction_difference_m,25,0.885,0.875,0.86,5,0.856,5,-7.09,-5.24
+154,station_vs_own_d,ferrol,agg_ssha_unfiltered,25,0.65,0.64,0.543,5,0.548,5,-2.55,-5.24

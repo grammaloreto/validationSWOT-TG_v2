@@ -1,0 +1,42 @@
+scope,track,station,variable,label,relation,n,r
+station_vs_own_d,197,cibrao,agg_ssha_unfiltered,A(S): SSHA L3,"direct term of d (+), up to the closure residue",24,0.6580577234770131
+station_vs_own_d,197,coruna,agg_ssha_unfiltered,A(S): SSHA L3,"direct term of d (+), up to the closure residue",24,0.6880914336732146
+station_vs_own_d,197,ferrol,agg_ssha_unfiltered,A(S): SSHA L3,"direct term of d (+), up to the closure residue",24,0.7008498911949201
+track_mean_vs_common_mode,197,cibrao+coruna+ferrol,agg_ssha_unfiltered,A(S): SSHA L3,"direct term of d (+), up to the closure residue",24,0.6930827493231063
+station_vs_own_d,197,cibrao,agg_dac,A(D): DAC,"direct term of d (+), up to the closure residue",24,0.37810504589626304
+station_vs_own_d,197,coruna,agg_dac,A(D): DAC,"direct term of d (+), up to the closure residue",24,0.36311356482938795
+station_vs_own_d,197,ferrol,agg_dac,A(D): DAC,"direct term of d (+), up to the closure residue",24,0.3314005091024932
+track_mean_vs_common_mode,197,cibrao+coruna+ferrol,agg_dac,A(D): DAC,"direct term of d (+), up to the closure residue",24,0.36758591180530653
+station_vs_own_d,197,cibrao,tg_residual,TG = H − T_TG,direct term of d (−),24,0.16640399041837556
+station_vs_own_d,197,coruna,tg_residual,TG = H − T_TG,direct term of d (−),24,0.23129535143608204
+station_vs_own_d,197,ferrol,tg_residual,TG = H − T_TG,direct term of d (−),24,0.036651672757546064
+track_mean_vs_common_mode,197,cibrao+coruna+ferrol,tg_residual,TG = H − T_TG,direct term of d (−),24,0.17837544834357438
+station_vs_own_d,197,cibrao,tide_prediction_difference_m,T_TG − A(ocean_tide) − A(internal_tide),"algebraically inside d (+): T_TG inside TG, ocean_tide and internal_tide inside S; includes −T_load",24,0.8680045765409965
+station_vs_own_d,197,coruna,tide_prediction_difference_m,T_TG − A(ocean_tide) − A(internal_tide),"algebraically inside d (+): T_TG inside TG, ocean_tide and internal_tide inside S; includes −T_load",24,0.7900257099903356
+station_vs_own_d,197,ferrol,tide_prediction_difference_m,T_TG − A(ocean_tide) − A(internal_tide),"algebraically inside d (+): T_TG inside TG, ocean_tide and internal_tide inside S; includes −T_load",24,0.8927943123808347
+track_mean_vs_common_mode,197,cibrao+coruna+ferrol,tide_prediction_difference_m,T_TG − A(ocean_tide) − A(internal_tide),"algebraically inside d (+): T_TG inside TG, ocean_tide and internal_tide inside S; includes −T_load",24,0.8700376995620365
+station_vs_own_d,197,cibrao,agg_calibration,A(calibration),"algebraically inside d (+), inside S",24,-0.1496774017873695
+station_vs_own_d,197,coruna,agg_calibration,A(calibration),"algebraically inside d (+), inside S",24,0.22509474939645316
+station_vs_own_d,197,ferrol,agg_calibration,A(calibration),"algebraically inside d (+), inside S",24,0.20974133292798813
+track_mean_vs_common_mode,197,cibrao+coruna+ferrol,agg_calibration,A(calibration),"algebraically inside d (+), inside S",24,-0.16486726665196355
+station_vs_own_d,154,coruna,agg_ssha_unfiltered,A(S): SSHA L3,"direct term of d (+), up to the closure residue",25,0.7217117288355472
+station_vs_own_d,154,ferrol,agg_ssha_unfiltered,A(S): SSHA L3,"direct term of d (+), up to the closure residue",25,0.6502262102118241
+track_mean_vs_common_mode,154,coruna+ferrol,agg_ssha_unfiltered,A(S): SSHA L3,"direct term of d (+), up to the closure residue",25,0.689440390776561
+station_vs_own_d,154,coruna,agg_dac,A(D): DAC,"direct term of d (+), up to the closure residue",25,0.08223634295211518
+station_vs_own_d,154,ferrol,agg_dac,A(D): DAC,"direct term of d (+), up to the closure residue",25,0.25436530942261604
+track_mean_vs_common_mode,154,coruna+ferrol,agg_dac,A(D): DAC,"direct term of d (+), up to the closure residue",25,0.18199655640934134
+station_vs_own_d,154,coruna,tg_residual,TG = H − T_TG,direct term of d (−),25,-0.037889725541291754
+station_vs_own_d,154,ferrol,tg_residual,TG = H − T_TG,direct term of d (−),25,-0.13571700855668384
+track_mean_vs_common_mode,154,coruna+ferrol,tg_residual,TG = H − T_TG,direct term of d (−),25,-0.061548720549099066
+station_vs_own_d,154,coruna,tide_prediction_difference_m,T_TG − A(ocean_tide) − A(internal_tide),"algebraically inside d (+): T_TG inside TG, ocean_tide and internal_tide inside S; includes −T_load",25,0.8216574761185848
+station_vs_own_d,154,ferrol,tide_prediction_difference_m,T_TG − A(ocean_tide) − A(internal_tide),"algebraically inside d (+): T_TG inside TG, ocean_tide and internal_tide inside S; includes −T_load",25,0.8845367797564083
+track_mean_vs_common_mode,154,coruna+ferrol,tide_prediction_difference_m,T_TG − A(ocean_tide) − A(internal_tide),"algebraically inside d (+): T_TG inside TG, ocean_tide and internal_tide inside S; includes −T_load",25,0.8648411310867908
+station_vs_own_d,154,coruna,agg_calibration,A(calibration),"algebraically inside d (+), inside S",25,0.12106731285217064
+station_vs_own_d,154,ferrol,agg_calibration,A(calibration),"algebraically inside d (+), inside S",25,0.11443363150596413
+track_mean_vs_common_mode,154,coruna+ferrol,agg_calibration,A(calibration),"algebraically inside d (+), inside S",25,0.11898957591581684
+cross_track_T154_vs_T197,154/197,track means,difference,d = A(S + D) − TG,d itself,21,0.9506570760390792
+cross_track_T154_vs_T197,154/197,track means,agg_ssha_unfiltered,A(S): SSHA L3,"direct term of d (+), up to the closure residue",21,0.9348107041728514
+cross_track_T154_vs_T197,154/197,track means,agg_dac,A(D): DAC,"direct term of d (+), up to the closure residue",21,0.8092656787745166
+cross_track_T154_vs_T197,154/197,track means,tg_residual,TG = H − T_TG,direct term of d (−),21,0.7265634912522845
+cross_track_T154_vs_T197,154/197,track means,tide_prediction_difference_m,T_TG − A(ocean_tide) − A(internal_tide),"algebraically inside d (+): T_TG inside TG, ocean_tide and internal_tide inside S; includes −T_load",21,0.8931472001559753
+cross_track_T154_vs_T197,154/197,track means,agg_calibration,A(calibration),"algebraically inside d (+), inside S",21,-0.8982303399450264

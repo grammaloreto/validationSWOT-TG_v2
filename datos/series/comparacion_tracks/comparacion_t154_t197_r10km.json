@@ -1,0 +1,231 @@
+{
+  "git_revision": "f5e7a1a",
+  "stations": {
+    "coruna": {
+      "t154_station": "coruna",
+      "t197_station": "coruna",
+      "same_instrument": true,
+      "role": "main",
+      "t154": {
+        "n": 25,
+        "A_bias_cm": 4.62,
+        "A_rmse_wo_offset_cm": 6.94,
+        "B_rmse_wo_offset_cm": 5.65,
+        "dRMSE_AB_cm": 1.29,
+        "dRMSE_AB_ci95_cm": [
+          -0.76,
+          3.19
+        ],
+        "A_r": 0.833,
+        "A_r_loo_min": 0.741,
+        "B_r": 0.85,
+        "C_r": 0.525,
+        "A_slope": 0.975,
+        "median_pixels": 1620.0,
+        "median_dispersion_cm": 3.78
+      },
+      "t197": {
+        "n": 24,
+        "A_bias_cm": 3.24,
+        "A_rmse_wo_offset_cm": 6.38,
+        "B_rmse_wo_offset_cm": 5.42,
+        "dRMSE_AB_cm": 0.96,
+        "dRMSE_AB_ci95_cm": [
+          -1.26,
+          3.17
+        ],
+        "A_r": 0.906,
+        "A_r_loo_min": 0.807,
+        "B_r": 0.891,
+        "C_r": 0.52,
+        "A_slope": 1.125,
+        "median_pixels": 724.0,
+        "median_dispersion_cm": 3.46
+      }
+    },
+    "ferrol": {
+      "t154_station": "ferrol",
+      "t197_station": "ferrol",
+      "same_instrument": true,
+      "role": "main",
+      "t154": {
+        "n": 25,
+        "A_bias_cm": 5.07,
+        "A_rmse_wo_offset_cm": 9.03,
+        "B_rmse_wo_offset_cm": 7.2,
+        "dRMSE_AB_cm": 1.83,
+        "dRMSE_AB_ci95_cm": [
+          -0.85,
+          4.02
+        ],
+        "A_r": 0.71,
+        "A_r_loo_min": 0.584,
+        "B_r": 0.737,
+        "C_r": 0.3,
+        "A_slope": 0.88,
+        "median_pixels": 1754.0,
+        "median_dispersion_cm": 1.82
+      },
+      "t197": {
+        "n": 24,
+        "A_bias_cm": 6.69,
+        "A_rmse_wo_offset_cm": 8.77,
+        "B_rmse_wo_offset_cm": 6.46,
+        "dRMSE_AB_cm": 2.31,
+        "dRMSE_AB_ci95_cm": [
+          -0.64,
+          5.0
+        ],
+        "A_r": 0.809,
+        "A_r_loo_min": 0.655,
+        "B_r": 0.845,
+        "C_r": 0.246,
+        "A_slope": 1.027,
+        "median_pixels": 790.5,
+        "median_dispersion_cm": 9.23
+      }
+    },
+    "langosteira": {
+      "t154_station": "langosteira",
+      "t197_station": "langosteira_2",
+      "same_instrument": false,
+      "role": "exploratory",
+      "t154": {
+        "n": 24,
+        "A_bias_cm": 2.34,
+        "A_rmse_wo_offset_cm": 11.63,
+        "B_rmse_wo_offset_cm": 10.67,
+        "dRMSE_AB_cm": 0.96,
+        "dRMSE_AB_ci95_cm": [
+          -1.16,
+          3.01
+        ],
+        "A_r": 0.61,
+        "A_r_loo_min": 0.491,
+        "B_r": 0.624,
+        "C_r": 0.242,
+        "A_slope": 0.57,
+        "median_pixels": 2666.5,
+        "median_dispersion_cm": 2.1
+      },
+      "t197": {
+        "n": 7,
+        "A_bias_cm": 9.11,
+        "A_rmse_wo_offset_cm": 6.51,
+        "B_rmse_wo_offset_cm": 4.19,
+        "dRMSE_AB_cm": 2.31,
+        "dRMSE_AB_ci95_cm": [
+          -2.32,
+          4.64
+        ],
+        "A_r": 0.988,
+        "A_r_loo_min": 0.947,
+        "B_r": 0.964,
+        "C_r": 0.844,
+        "A_slope": 1.36,
+        "median_pixels": 2460.0,
+        "median_dispersion_cm": 1.55
+      },
+      "t154_C01_C26": {
+        "n": 21,
+        "A_bias_cm": 6.06,
+        "A_rmse_wo_offset_cm": 6.51,
+        "B_rmse_wo_offset_cm": 5.69,
+        "dRMSE_AB_cm": 0.81,
+        "dRMSE_AB_ci95_cm": [
+          -1.36,
+          2.85
+        ],
+        "A_r": 0.868,
+        "A_r_loo_min": 0.79,
+        "B_r": 0.866,
+        "C_r": 0.619,
+        "A_slope": 1.0,
+        "median_pixels": 2667.0,
+        "median_dispersion_cm": 2.09
+      }
+    },
+    "vigo": {
+      "t154_station": "vigo",
+      "t197_station": "vigo",
+      "same_instrument": true,
+      "role": "exploratory",
+      "t154": {
+        "n": 7,
+        "A_bias_cm": -8.64,
+        "A_rmse_wo_offset_cm": 8.29,
+        "B_rmse_wo_offset_cm": 5.2,
+        "dRMSE_AB_cm": 3.09,
+        "dRMSE_AB_ci95_cm": [
+          -2.6,
+          7.57
+        ],
+        "A_r": 0.956,
+        "A_r_loo_min": 0.953,
+        "B_r": 0.699,
+        "C_r": 0.766,
+        "A_slope": 1.966,
+        "median_pixels": 378.0,
+        "median_dispersion_cm": 37.27
+      },
+      "t197": {
+        "n": 10,
+        "A_bias_cm": -11.31,
+        "A_rmse_wo_offset_cm": 25.72,
+        "B_rmse_wo_offset_cm": 5.37,
+        "dRMSE_AB_cm": 20.36,
+        "dRMSE_AB_ci95_cm": [
+          1.81,
+          33.55
+        ],
+        "A_r": -0.264,
+        "A_r_loo_min": -0.518,
+        "B_r": 0.915,
+        "C_r": -0.012,
+        "A_slope": -0.378,
+        "median_pixels": 197.0,
+        "median_dispersion_cm": 31.55
+      }
+    }
+  },
+  "cross_track": {
+    "common_mode_t154_from": [
+      "coruna",
+      "ferrol"
+    ],
+    "common_mode_t197_from": [
+      "cibrao",
+      "coruna",
+      "ferrol"
+    ],
+    "std_common_mode_cm": {
+      "t154": 8.04,
+      "t197": 7.45
+    },
+    "common_mode_t154_vs_t197": {
+      "n": 21,
+      "r": 0.951
+    },
+    "reference_coruna_tg_residual_t154_vs_t197": {
+      "n": 21,
+      "r": 0.741
+    },
+    "reference_coruna_dac_t154_vs_t197": {
+      "n": 21,
+      "r": 0.803
+    },
+    "reference_coruna_dac_error_t154_vs_t197": {
+      "n": 21,
+      "r": 0.893
+    },
+    "reference_coruna_swot_l3_t154_vs_t197": {
+      "n": 21,
+      "r": 0.933
+    },
+    "hours_t197_minus_t154": {
+      "median": 37.3,
+      "min": 37.3,
+      "max": 37.3
+    }
+  }
+}
