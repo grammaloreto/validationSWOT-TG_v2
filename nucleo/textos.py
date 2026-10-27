@@ -46,7 +46,6 @@ TEXTOS = {
         "pag_aporta": "¿Aporta SWOT?", "pag_radio": "Radio de búsqueda", "pag_regional": "Patrón regional",
         "pag_literatura": "Otros estudios", "pag_metodo": "Método",
         "titulo_app": "Validación SWOT – mareógrafos · Galicia",
-        "traduccion_pendiente": "",
         # comparaciones
         "etiqueta_a": "SWOT + DAC",
         "etiqueta_b": "DAC solo (modelo atmosférico)",
@@ -78,8 +77,6 @@ TEXTOS = {
         "pag_aporta": "Does SWOT add value?", "pag_radio": "Search radius", "pag_regional": "Regional pattern",
         "pag_literatura": "Related studies", "pag_metodo": "Method",
         "titulo_app": "SWOT – tide gauge validation · Galicia",
-        "traduccion_pendiente": "Translation in progress: the text of this page is still in Spanish. "
-                                "Figures and chart labels are already in English.",
         "etiqueta_a": "SWOT + DAC",
         "etiqueta_b": "DAC alone (atmospheric model)",
         "etiqueta_b_corta": "DAC alone",

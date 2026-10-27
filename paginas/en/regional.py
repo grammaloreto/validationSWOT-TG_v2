@@ -5,67 +5,64 @@ import streamlit as st
 from nucleo import datos as D
 from nucleo import estilo as E
 from nucleo import graficos as G
-from nucleo import textos as T
 
-E.aplicar()
-E.aviso(T.t("traduccion_pendiente"))  # retirar al traducir la página
 E.cabecera(
-    "Resultados · Patrón regional",
-    "Una discrepancia que comparten las estaciones",
-    "Cuando se mira la diferencia SWOT − mareógrafo paso a paso, aparece algo inesperado: en la costa norte "
-    "<b>sube y baja a la vez en todas las estaciones</b>, se repite en las dos pasadas del satélite y sigue de "
-    "cerca a la diferencia entre las dos predicciones de marea. Las estaciones, por tanto, no son pruebas "
-    "independientes, y este patrón se analiza aparte de los resultados por estación.",
+    "Results · Regional pattern",
+    "A discrepancy shared by the stations",
+    "When the SWOT − tide gauge difference is examined pass by pass, something unexpected appears: on the north "
+    "coast it <b>rises and falls at the same time at all the stations</b>, repeats in the two satellite passes and "
+    "closely follows the difference between the two tide predictions. The stations are therefore not independent "
+    "tests, and this pattern is analysed separately from the results by station.",
 )
 
-E.aviso("<b>Asociación no es causa.</b> Todas las variables analizadas aquí forman parte de la propia diferencia "
-        "SWOT − mareógrafo, así que su parecido con ella no es una prueba independiente de qué la provoca.")
+E.aviso("<b>Association is not causation.</b> All the variables analysed here are part of the SWOT − tide gauge "
+        "difference itself, so their resemblance to it is not independent proof of what causes it.")
 
 # ---------------------------------------------------------------- 1
-st.markdown("### 1 · Las estaciones se mueven juntas")
+st.markdown("### 1 · The stations move together")
 track = st.segmented_control("Track", options=list(D.TRACKS), default=197,
                              format_func=lambda t: f"Track {t}", key="track_d") or 197
 st.plotly_chart(G.regional_d(track), use_container_width=True)
 cmp = D.estaciones_cmp(track).set_index("station")
 ref = D.REFERENCIA_MODO_COMUN[track]
 std_cm = D.tracks_json()["cross_track"]["std_common_mode_cm"][f"t{track}"]
-st.caption(f"Diferencia por paso de cada estación de referencia, centrada (se le resta su media), y su media: el "
-           f"**modo común** del track {track} (desviación típica {E.num(std_cm, 1)} cm).")
-filas = [{"Estación": D.nombre(s), "r con el modo común de las demás": cmp.loc[s, "r_common_mode"],
-          "Dispersión propia (cm)": cmp.loc[s, "own_part_cm"], "n": int(cmp.loc[s, "n_common_mode"])}
+st.caption(f"Per-pass difference of each reference station, centred (its mean is subtracted), and their mean: the "
+           f"**common mode** of track {track} (standard deviation {E.num(std_cm, 1)} cm).")
+filas = [{"Station": D.nombre(s), "r with the common mode of the others": cmp.loc[s, "r_common_mode"],
+          "Own dispersion (cm)": cmp.loc[s, "own_part_cm"], "n": int(cmp.loc[s, "n_common_mode"])}
          for s in cmp.index if s in ref or s in ("langosteira_2", "villagarcia")]
 a, b = st.columns([3, 2])
 a.dataframe(pd.DataFrame(filas), hide_index=True, use_container_width=True,
-            column_config={"r con el modo común de las demás": st.column_config.NumberColumn(format="%.2f"),
-                           "Dispersión propia (cm)": st.column_config.NumberColumn(format="%.1f")})
-b.markdown("La **r** de cada estación se calcula con el modo común de las *demás* (sin ella). La **dispersión "
-           "propia** es la desviación típica de su diferencia respecto a ese modo común: mucho menor que la "
-           "variabilidad del propio modo común.")
+            column_config={"r with the common mode of the others": st.column_config.NumberColumn(format="%.2f"),
+                           "Own dispersion (cm)": st.column_config.NumberColumn(format="%.1f")})
+b.markdown("The **r** of each station is computed with the common mode of the *others* (without it). The **own "
+           "dispersion** is the standard deviation of its difference with respect to that common mode: much smaller "
+           "than the variability of the common mode itself.")
 
 # ---------------------------------------------------------------- 2
-st.markdown("### 2 · Se repite en las dos pasadas, separadas 37 horas")
+st.markdown("### 2 · It repeats in the two passes, 37 hours apart")
 ct = D.tracks_json()["cross_track"]
 a, b = st.columns([3, 2])
 with a:
     st.plotly_chart(G.entre_tracks(), use_container_width=True, config={"displayModeBar": False})
 with b:
-    st.markdown(f"El paso del track 197 ocurre **{E.num(ct['hours_t197_minus_t154']['median'], 1)} h** después del "
-                f"del track 154 en el mismo ciclo. En los {ct['common_mode_t154_vs_t197']['n']} ciclos válidos en "
-                "los dos, los modos comunes casi coinciden.")
+    st.markdown(f"The track 197 pass occurs **{E.num(ct['hours_t197_minus_t154']['median'], 1)} h** after the "
+                f"track 154 pass in the same cycle. In the {ct['common_mode_t154_vs_t197']['n']} cycles valid on "
+                "both, the common modes almost coincide.")
     comp = pd.DataFrame([
-        {"Señal": "Modo común de la diferencia", "r entre tracks": ct["common_mode_t154_vs_t197"]["r"]},
-        {"Señal": "Anomalía de SWOT en A Coruña", "r entre tracks": ct["reference_coruna_swot_l3_t154_vs_t197"]["r"]},
-        {"Señal": "DAC − mareógrafo en A Coruña", "r entre tracks": ct["reference_coruna_dac_error_t154_vs_t197"]["r"]},
-        {"Señal": "DAC en A Coruña", "r entre tracks": ct["reference_coruna_dac_t154_vs_t197"]["r"]},
-        {"Señal": "Residuo del mareógrafo en A Coruña",
-         "r entre tracks": ct["reference_coruna_tg_residual_t154_vs_t197"]["r"]},
+        {"Signal": "Common mode of the difference", "r between tracks": ct["common_mode_t154_vs_t197"]["r"]},
+        {"Signal": "SWOT anomaly at A Coruña", "r between tracks": ct["reference_coruna_swot_l3_t154_vs_t197"]["r"]},
+        {"Signal": "DAC − tide gauge at A Coruña", "r between tracks": ct["reference_coruna_dac_error_t154_vs_t197"]["r"]},
+        {"Signal": "DAC at A Coruña", "r between tracks": ct["reference_coruna_dac_t154_vs_t197"]["r"]},
+        {"Signal": "Tide gauge residual at A Coruña",
+         "r between tracks": ct["reference_coruna_tg_residual_t154_vs_t197"]["r"]},
     ])
     st.dataframe(comp, hide_index=True, use_container_width=True,
-                 column_config={"r entre tracks": st.column_config.NumberColumn(format="%.2f")})
-    st.caption("La discrepancia compartida persiste entre pasadas más que el propio nivel del mar que mide el "
-               "mareógrafo (comparación descriptiva de correlaciones, no contrastada).")
+                 column_config={"r between tracks": st.column_config.NumberColumn(format="%.2f")})
+    st.caption("The shared discrepancy persists between passes more than the sea level measured by the tide gauge "
+               "itself (descriptive comparison of correlations, not tested).")
 
-with st.expander("Detalle técnico: robustez de la persistencia entre tracks"):
+with st.expander("Technical detail: robustness of the persistence between tracks"):
     rb = D.robustez(10)
     cross = rb[rb.group == "cross_track"].iloc[0]
     pm = D.persistencia_mareografos()
@@ -75,70 +72,69 @@ with st.expander("Detalle técnico: robustez de la persistencia entre tracks"):
     radios = {r: D.robustez(r, comun=True) for r in D.RADIOS}
     rr = {r: radios[r][radios[r].group == "cross_track"].iloc[0] for r in D.RADIOS}
     st.markdown(
-        f"- **Tendencia:** tras retirar una tendencia lineal de cada serie, r = {E.num(cross.r_detrended)}.\n"
-        f"- **Ciclos individuales:** dejando fuera un ciclo cada vez, r entre {E.num(cross.loo_min_r)} y "
+        f"- **Trend:** after removing a linear trend from each series, r = {E.num(cross.r_detrended)}.\n"
+        f"- **Individual cycles:** leaving out one cycle at a time, r between {E.num(cross.loo_min_r)} and "
         f"{E.num(cross.loo_max_r)}.\n"
-        f"- **Conjuntos de mareógrafos:** combinaciones de estaciones que no comparten ningún mareógrafo entre "
-        f"tracks dan r = {E.num(disj.r.min())}–{E.num(disj.r.max())}; las que comparten alguno, "
-        f"{E.num(shar.r.min())}–{E.num(shar.r.max())}. Los mareógrafos no compartidos siguen perteneciendo a la "
-        f"misma red y procesado.\n"
-        f"- **Radio:** en los ciclos válidos en los tres radios (n = {int(rr[10].n)}), r = "
-        f"{', '.join(E.num(rr[r].r) for r in D.RADIOS)} a 6, 8 y 10 km "
-        f"({', '.join(E.num(rr[r].r_detrended) for r in D.RADIOS)} sin tendencia).")
+        f"- **Sets of tide gauges:** combinations of stations that share no tide gauge between tracks give "
+        f"r = {E.num(disj.r.min())}–{E.num(disj.r.max())}; those that share some, "
+        f"{E.num(shar.r.min())}–{E.num(shar.r.max())}. The non-shared tide gauges still belong to the same "
+        f"network and processing.\n"
+        f"- **Radius:** on the cycles valid at all three radii (n = {int(rr[10].n)}), r = "
+        f"{', '.join(E.num(rr[r].r) for r in D.RADIOS)} at 6, 8 and 10 km "
+        f"({', '.join(E.num(rr[r].r_detrended) for r in D.RADIOS)} detrended).")
 
 # ---------------------------------------------------------------- 3
-st.markdown("### 3 · Sigue a la diferencia entre las dos predicciones de marea")
+st.markdown("### 3 · It follows the difference between the two tide predictions")
 a, b = st.columns([3, 2])
 with a:
     st.plotly_chart(G.modo_comun_mareas(), use_container_width=True, config={"displayModeBar": False})
 with b:
-    st.markdown("Cada sistema retira la marea con su propia predicción: SWOT con un **modelo global** (FES2022 y "
-                "marea interna HRET) y el mareógrafo con la **predicción armónica de Puertos del Estado**. Si esas "
-                "dos predicciones difieren, la diferencia pasa directamente a la comparación.")
-    var = {"tide_prediction_difference_m": "Predicción del mareógrafo − marea de SWOT",
-           "agg_ssha_unfiltered": "Anomalía de SWOT", "agg_dac": "DAC", "tg_residual": "Residuo del mareógrafo"}
-    filas = [{"Variable (media del track)": etq,
+    st.markdown("Each system removes the tide with its own prediction: SWOT with a **global model** (FES2022 and "
+                "the HRET internal tide) and the tide gauge with the **harmonic prediction of Puertos del Estado**. "
+                "If those two predictions differ, the difference passes directly into the comparison.")
+    var = {"tide_prediction_difference_m": "Tide gauge prediction − SWOT tide",
+           "agg_ssha_unfiltered": "SWOT anomaly", "agg_dac": "DAC", "tg_residual": "Tide gauge residual"}
+    filas = [{"Variable (track mean)": etq,
               "r · T197": D.r_guardada(197, v)[0], "r · T154": D.r_guardada(154, v)[0]} for v, etq in var.items()]
     st.dataframe(pd.DataFrame(filas), hide_index=True, use_container_width=True,
                  column_config={c: st.column_config.NumberColumn(format="%.2f") for c in ("r · T197", "r · T154")})
-    st.caption("Correlación de cada componente con el modo común. La diferencia de predicciones es la más fuerte "
-               "en los dos tracks.")
+    st.caption("Correlation of each component with the common mode. The prediction difference is the strongest "
+               "on both tracks.")
 
 rob = D.robustez_descomp()
 rt = {tr: rob[(rob.track == tr) & (rob.scope == "track_mean_vs_common_mode")
               & (rob.variable == "tide_prediction_difference_m")].iloc[0] for tr in D.TRACKS}
 st_ = rob[(rob.scope == "station_vs_own_d") & (rob.variable == "tide_prediction_difference_m")]
 st.markdown(
-    f"La asociación se mantiene **en cada estación de referencia** (r = {E.num(st_.r.min())}–{E.num(st_.r.max())}), "
-    f"tras retirar la tendencia (r = {E.num(rt[197].r_detrended)} en T197 y {E.num(rt[154].r_detrended)} en T154) y "
-    f"dejando fuera un ciclo cada vez (r ≥ {E.num(rt[197].loo_min)} y {E.num(rt[154].loo_min)}).")
+    f"The association holds **at each reference station** (r = {E.num(st_.r.min())}–{E.num(st_.r.max())}), "
+    f"after removing the trend (r = {E.num(rt[197].r_detrended)} on T197 and {E.num(rt[154].r_detrended)} on T154) "
+    f"and leaving out one cycle at a time (r ≥ {E.num(rt[197].loo_min)} and {E.num(rt[154].loo_min)}).")
 
-st.markdown("### Una explicación posible: la marea anual")
+st.markdown("### A possible explanation: the annual tide")
 E.hallazgo(
-    "Hipótesis: las componentes anual y semianual (Sa y Ssa)",
-    "En los mareógrafos, las componentes anual y semianual de la marea recogen sobre todo el ciclo estacional "
-    "del nivel del mar, dominado por la meteorología más que por la astronomía; en los mareógrafos europeos son "
-    "de varios centímetros (Ray et al., 2021). La corrección de marea de SWOT, en cambio, solo incluye la pequeña "
-    "parte astronómica. Si la predicción de Puertos del Estado incluye Sa y Ssa ajustadas a cada registro, retira "
-    "del mareógrafo un ciclo estacional que SWOT conserva, y esa diferencia aparecería justo como una "
-    "discrepancia lenta, común y persistente, contenida en la diferencia de predicciones. <b>Para comprobarlo "
-    "hacen falta las constantes exactas de la predicción, que no están publicadas: por ahora es una hipótesis, "
-    "no un resultado.</b>")
+    "Hypothesis: the annual and semiannual constituents (Sa and Ssa)",
+    "At tide gauges, the annual and semiannual tidal constituents mainly capture the seasonal cycle of sea level, "
+    "dominated by meteorology rather than astronomy; at European tide gauges they amount to several centimetres "
+    "(Ray et al., 2021). The SWOT tide correction, by contrast, includes only the small astronomical part. If the "
+    "Puertos del Estado prediction includes Sa and Ssa fitted to each record, it removes from the tide gauge a "
+    "seasonal cycle that SWOT retains, and that difference would appear precisely as a slow, common and "
+    "persistent discrepancy, contained in the prediction difference. <b>Testing it requires the exact constants "
+    "of the prediction, which are not published: for now it is a hypothesis, not a result.</b>")
 
-with st.expander("Detalle técnico: qué más contiene la diferencia de predicciones"):
+with st.expander("Technical detail: what else the prediction difference contains"):
     st.markdown(
-        "- **Marea de carga:** el altímetro mide alturas geocéntricas y su corrección de marea incluye la marea "
-        "de carga; el mareógrafo mide respecto a la corteza, que se mueve con ella. Retirar en cada lado su "
-        "propia predicción es coherente, pero la *diferencia de predicciones* contiene la marea de carga por "
-        "construcción, incluso con modelos perfectos. Esa parte es esperable y no indica un error.\n"
-        "- **Ubicación:** una predicción se evalúa en el puerto y la otra en los píxeles, así que la diferencia "
-        "incluye también la variación espacial real de la marea y los errores de ambas predicciones cerca de "
-        "la costa.\n"
-        "- Por todo ello, la asociación **no atribuye** la discrepancia a un modelo concreto.")
+        "- **Load tide:** the altimeter measures geocentric heights and its tide correction includes the load "
+        "tide; the tide gauge measures relative to the crust, which moves with it. Removing its own prediction "
+        "on each side is consistent, but the *prediction difference* contains the load tide by construction, "
+        "even with perfect models. That part is expected and does not indicate an error.\n"
+        "- **Location:** one prediction is evaluated at the port and the other at the pixels, so the difference "
+        "also includes the real spatial variation of the tide and the errors of both predictions near the "
+        "coast.\n"
+        "- For all these reasons, the association **does not attribute** the discrepancy to a specific model.")
 
-with st.expander("Detalle técnico: componentes por paso frente al modo común"):
+with st.expander("Technical detail: per-pass components against the common mode"):
     tr = st.segmented_control("Track ", options=list(D.TRACKS), default=197,
                               format_func=lambda t: f"Track {t}", key="track_comp") or 197
     st.plotly_chart(G.componentes(tr), use_container_width=True)
-    st.caption("Cada componente centrada por estación sobre los ciclos comunes del track; en negro, su media. "
-               "Todas están relacionadas algebraicamente con d.")
+    st.caption("Each component centred by station over the common cycles of the track; in black, their mean. "
+               "All of them are algebraically related to d.")

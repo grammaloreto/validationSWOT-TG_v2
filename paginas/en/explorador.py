@@ -8,24 +8,22 @@ from nucleo import estilo as E
 from nucleo import graficos as G
 from nucleo import textos as T
 
-E.aplicar()
-E.aviso(T.t("traduccion_pendiente"))  # retirar al traducir la página
 E.cabecera(
-    "Resultados · Explorador",
-    "Paso a paso, estación a estación",
-    "Elige una estación, una pasada y un círculo de búsqueda. Cada punto es un paso de SWOT con su valor del "
-    "mareógrafo a la misma hora. La línea morada es SWOT con la corrección atmosférica devuelta; la verde "
-    "discontinua, el modelo atmosférico solo. <b>Si SWOT aportara información propia, la morada debería "
-    "acercarse a la negra más que la verde.</b>",
+    "Results · Explorer",
+    "Pass by pass, station by station",
+    "Choose a station, a track and a search circle. Each point is a SWOT pass with its tide gauge value at the "
+    "same time. The purple line is SWOT with the atmospheric correction restored; the dashed green one, the "
+    "atmospheric model alone. <b>If SWOT added information of its own, the purple line should come closer to the "
+    "black one than the green one does.</b>",
 )
 
 c1, c2, c3 = st.columns([2, 1, 1])
 track = c2.segmented_control("Track", options=list(D.TRACKS), default=197,
                              format_func=lambda t: f"Track {t}") or 197
 opciones = D.principales(track) + D.exploratorias(track)
-station = c1.selectbox("Estación", opciones, format_func=lambda s: (
-    f"{D.nombre(s)} · {'principal' if s in D.principales(track) else 'exploratoria'}"))
-radio = c3.segmented_control("Radio", options=list(D.RADIOS), default=D.RADIO_REF,
+station = c1.selectbox("Station", opciones, format_func=lambda s: (
+    f"{D.nombre(s)} · {'main' if s in D.principales(track) else 'exploratory'}"))
+radio = c3.segmented_control("Radius", options=list(D.RADIOS), default=D.RADIO_REF,
                              format_func=lambda r: f"{r} km") or D.RADIO_REF
 
 f = D.fila(station, track, radio, "propia")
@@ -36,78 +34,78 @@ ok = D.validos(df)
 st.markdown(f"#### {D.nombre(station)} · track {track} · {radio} km &nbsp; {E.papel(f10.role)}",
             unsafe_allow_html=True)
 if T.condicion(station, track):
-    E.nota(f"<b>Condición:</b> {T.condicion(station, track)}")
+    E.nota(f"<b>Condition:</b> {T.condicion(station, track)}")
 
 if f is None or pd.isna(f.A_r):
-    E.aviso(f"Con {len(ok)} pares válidos a {radio} km no se calculan métricas (mínimo 5).")
+    E.aviso(f"With {len(ok)} valid pairs at {radio} km no metrics are computed (minimum 5).")
     st.stop()
 
 E.tarjetas([
-    (f"{int(f.n)}", "pares válidos (pasos con SWOT y mareógrafo)"),
-    (f"{E.num(f.A_r)} / {E.num(f.B_r)}", "correlación r de SWOT + DAC / del DAC solo"),
+    (f"{int(f.n)}", "valid pairs (passes with SWOT and tide gauge)"),
+    (f"{E.num(f.A_r)} / {E.num(f.B_r)}", "correlation r of SWOT + DAC / of the DAC alone"),
     (f"{E.num(f.A_rmse_wo_offset_cm, 1)} / {E.num(f.B_rmse_wo_offset_cm, 1)} cm",
-     "RMSE sin desplazamiento de SWOT + DAC / del DAC solo"),
-    (f"{E.signo(f.dRMSE_AB_cm)} cm", f"ΔRMSE A − B, IC 95 % {E.intervalo(f.dRMSE_AB_ci_low, f.dRMSE_AB_ci_high)}"),
-    (f"{E.signo(f.A_bias_cm)} cm", "desplazamiento medio SWOT + DAC − mareógrafo (descriptor)"),
+     "RMSE without offset of SWOT + DAC / of the DAC alone"),
+    (f"{E.signo(f.dRMSE_AB_cm)} cm", f"ΔRMSE A − B, 95 % CI {E.intervalo(f.dRMSE_AB_ci_low, f.dRMSE_AB_ci_high)}"),
+    (f"{E.signo(f.A_bias_cm)} cm", "mean offset SWOT + DAC − tide gauge (descriptor)"),
 ])
 
 if f.dRMSE_AB_ci_low > 0:
-    lectura = ("Aquí SWOT + DAC se aleja del mareógrafo <b>más</b> que el DAC solo, y el intervalo no incluye el "
-               "cero.")
+    lectura = ("Here SWOT + DAC departs from the tide gauge <b>more</b> than the DAC alone, and the interval does "
+               "not include zero.")
 elif f.dRMSE_AB_ci_high < 0:
-    lectura = "Aquí SWOT + DAC se acerca al mareógrafo más que el DAC solo, y el intervalo no incluye el cero."
+    lectura = "Here SWOT + DAC comes closer to the tide gauge than the DAC alone, and the interval does not include zero."
 else:
-    lectura = ("La diferencia entre SWOT + DAC y el DAC solo no es concluyente: el intervalo incluye el cero.")
+    lectura = ("The difference between SWOT + DAC and the DAC alone is not conclusive: the interval includes zero.")
 E.nota(lectura)
 
 st.plotly_chart(G.serie_estacion(ok, float(f.A_bias_cm)), use_container_width=True)
-st.caption("A SWOT + DAC se le resta su desplazamiento medio para comparar la forma de las series; el "
-           "desplazamiento incluye la diferencia entre las referencias verticales de los dos sistemas.")
+st.caption("The mean offset of SWOT + DAC is subtracted to compare the shape of the series; the offset includes "
+           "the difference between the vertical references of the two systems.")
 
 a, b = st.columns([1, 1])
 with a:
-    st.markdown("**Satélite y modelo frente al mareógrafo**")
+    st.markdown("**Satellite and model against the tide gauge**")
     st.plotly_chart(G.dispersion_ab(ok, float(f.A_bias_cm)), use_container_width=True)
 with b:
-    st.markdown("**Cobertura de SWOT en el círculo, por ciclo**")
+    st.markdown("**SWOT coverage in the circle, by cycle**")
     st.plotly_chart(G.cobertura(df), use_container_width=True)
-    st.caption(f"Mediana de píxeles válidos en los pares: {f.sample_median_pixels:.0f} · tramos de 1 km: "
-               f"{f.sample_median_segments:.0f} · dispersión espacial: {f.sample_median_dispersion_cm:.1f} cm.")
+    st.caption(f"Median of valid pixels in the pairs: {f.sample_median_pixels:.0f} · 1 km segments: "
+               f"{f.sample_median_segments:.0f} · spatial dispersion: {f.sample_median_dispersion_cm:.1f} cm.")
 
-with st.expander("Métricas completas (comparaciones A, B y C)"):
+with st.expander("Full metrics (comparisons A, B and C)"):
     m = pd.DataFrame([
-        {"Comparación": "A · SWOT + DAC frente al mareógrafo", "r": f.A_r,
-         "r mínima dejando un paso fuera": f.A_r_loo_min, "RMSE sin desplazamiento (cm)": f.A_rmse_wo_offset_cm,
-         "RMSE total (cm)": f.A_rmse_total_cm, "Desplazamiento (cm)": f.A_bias_cm, "Pendiente": f.A_slope},
-        {"Comparación": "B · DAC solo frente al mareógrafo", "r": f.B_r,
-         "RMSE sin desplazamiento (cm)": f.B_rmse_wo_offset_cm, "RMSE total (cm)": f.B_rmse_total_cm},
-        {"Comparación": "C · anomalía SWOT frente a mareógrafo − DAC", "r": f.C_r},
+        {"Comparison": "A · SWOT + DAC against the tide gauge", "r": f.A_r,
+         "Minimum leave-one-out r": f.A_r_loo_min, "RMSE without offset (cm)": f.A_rmse_wo_offset_cm,
+         "Total RMSE (cm)": f.A_rmse_total_cm, "Offset (cm)": f.A_bias_cm, "Slope": f.A_slope},
+        {"Comparison": "B · DAC alone against the tide gauge", "r": f.B_r,
+         "RMSE without offset (cm)": f.B_rmse_wo_offset_cm, "Total RMSE (cm)": f.B_rmse_total_cm},
+        {"Comparison": "C · SWOT anomaly against tide gauge − DAC", "r": f.C_r},
     ])
     st.dataframe(m, hide_index=True, use_container_width=True,
                  column_config={c: st.column_config.NumberColumn(format="%.2f") for c in m.columns[1:]})
     st.markdown(
-        "- **Desplazamiento medio:** media de SWOT + DAC − mareógrafo. Es un descriptor, no un error de SWOT: "
-        "incluye la diferencia entre la superficie media del mar y el cero del puerto, que no se transforma.\n"
-        "- **RMSE sin desplazamiento:** error cuadrático medio tras retirar ese desplazamiento; mide si las dos "
-        "series suben y bajan juntas.\n"
-        "- **ΔRMSE A − B:** diferencia de RMSE entre SWOT + DAC y el DAC solo, con intervalo de confianza del 95 % "
-        "por bootstrap pareado sobre los pasos (10 000 remuestreos). Supone pasos independientes; con dependencia "
-        "temporal positiva, los intervalos podrían ser algo estrechos.\n"
-        "- **C** tiene el mismo desplazamiento y RMSE que A, pero una r distinta: mide la asociación que queda "
-        "tras retirar el DAC de los dos lados. No prueba por sí sola información oceánica independiente.")
+        "- **Mean offset:** mean of SWOT + DAC − tide gauge. It is a descriptor, not a SWOT error: it includes "
+        "the difference between the mean sea surface and the harbour datum, which is not transformed.\n"
+        "- **RMSE without offset:** root mean square error after removing that offset; it measures whether the "
+        "two series rise and fall together.\n"
+        "- **ΔRMSE A − B:** difference in RMSE between SWOT + DAC and the DAC alone, with a 95 % confidence "
+        "interval from a paired bootstrap over the passes (10 000 resamples). It assumes independent passes; with "
+        "positive temporal dependence, the intervals could be somewhat narrow.\n"
+        "- **C** has the same offset and RMSE as A, but a different r: it measures the association that remains "
+        "after removing the DAC from both sides. On its own it does not prove independent oceanic information.")
 
-with st.expander("Tabla de pasos (incluidos los excluidos y su motivo)"):
+with st.expander("Table of passes (including the excluded ones and their reason)"):
     tabla = df[["cycle", "status", "exclusion_reason", "pass_time_utc", "pixels_in_circle", "pixels_after_mad",
                 "n_segments", "swot_corrected", "dac_median", "tg_residual", "difference"]].copy()
-    tabla["status"] = np.where(tabla.status == "ok", "válido", "excluido")
+    tabla["status"] = np.where(tabla.status == "ok", "valid", "excluded")
     tabla["exclusion_reason"] = tabla.exclusion_reason.map(T.motivos())
     for c in ("swot_corrected", "dac_median", "tg_residual", "difference"):
         tabla[c] = 100 * tabla[c]
-    tabla.columns = ["Ciclo", "Estado", "Motivo", "Hora del paso (UTC)", "Píxeles en el círculo",
-                     "Píxeles usados", "Tramos de 1 km", "SWOT + DAC (cm)", "DAC (cm)", "Mareógrafo (cm)",
+    tabla.columns = ["Cycle", "Status", "Reason", "Pass time (UTC)", "Pixels in the circle",
+                     "Pixels used", "1 km segments", "SWOT + DAC (cm)", "DAC (cm)", "Tide gauge (cm)",
                      "d (cm)"]
     st.dataframe(tabla, hide_index=True, use_container_width=True,
                  column_config={c: st.column_config.NumberColumn(format="%.1f")
-                                for c in ("SWOT + DAC (cm)", "DAC (cm)", "Mareógrafo (cm)", "d (cm)")})
-    st.download_button("Descargar la serie (CSV)", df.to_csv(index=False).encode(),
+                                for c in ("SWOT + DAC (cm)", "DAC (cm)", "Tide gauge (cm)", "d (cm)")})
+    st.download_button("Download the series (CSV)", df.to_csv(index=False).encode(),
                        file_name=f"{station}_t{track}_r{radio}km.csv", mime="text/csv")
