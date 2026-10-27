@@ -119,9 +119,11 @@ CONDICIONES = {
         ("vigo", 197): "Pocas fechas con datos del mareógrafo y un paso de calidad o representatividad incierta.",
         ("langosteira_2", 154): "Pocas fechas con datos del mareógrafo (5 pares).",
         ("villagarcia", 154): "SWOT solo cubre la estación en los ciclos 23–29 (5 pares).",
-        ("marin", 154): "Mediana de 36 píxeles válidos por paso: el círculo apenas ve agua.",
+        ("marin", 154): "Mediana de 36 píxeles válidos por paso: muy poca cobertura válida para representar el "
+                        "entorno del puerto.",
         ("vigo", 154): "Pocas fechas con datos del mareógrafo (7 pares).",
-        ("langosteira_2", 197): "Serie principal con pocos pares (7): pesa mucho menos que las de 23–25.",
+        ("langosteira_2", 197): "Serie principal con buena cobertura espacial, pero solo 7 pares temporales: sus "
+                                "resultados requieren cautela por el reducido tamaño de la muestra.",
     },
     "en": {
         ("marin", 197): "Scarce valid coverage (median of 130 valid pixels per pass); passes of uncertain quality "
@@ -129,9 +131,11 @@ CONDICIONES = {
         ("vigo", 197): "Few tide gauge dates; one pass of uncertain quality or representativeness.",
         ("langosteira_2", 154): "Few tide gauge dates (5 pairs).",
         ("villagarcia", 154): "SWOT covers the station only in cycles 23–29 (5 pairs).",
-        ("marin", 154): "Median of 36 valid pixels per pass: the circle barely sees water.",
+        ("marin", 154): "Median of 36 valid pixels per pass: too little valid coverage to represent the port's "
+                        "surroundings.",
         ("vigo", 154): "Few tide gauge dates (7 pairs).",
-        ("langosteira_2", 197): "Main series with few pairs (7): it weighs much less than those with 23–25.",
+        ("langosteira_2", 197): "Main series with good spatial coverage but only 7 temporal pairs: its results "
+                                "require caution because of the small sample size.",
     },
 }
 

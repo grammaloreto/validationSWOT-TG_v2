@@ -66,6 +66,4 @@ with st.expander("Detalle técnico: fuentes de datos"):
         "- **Mareógrafos:** registros horarios de la red REDMAR de Puertos del Estado, sin modificar. Cada registro "
         "trae el nivel, la predicción astronómica y su diferencia (residuo meteorológico). Las series horarias "
         "son promedios filtrados del registro de alta frecuencia.\n"
-        "- **Langosteira** es la estación REDMAR 3213 (muelle A3), la única de ese puerto con procedencia "
-        "instrumental clara. Un registro alternativo con el mismo nombre queda fuera del análisis.\n"
         "- **Nombres** según la red REDMAR (San Cibrao, A Coruña, Ferrol, Langosteira, Villagarcía, Marín, Vigo).")

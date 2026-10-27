@@ -28,12 +28,12 @@ coruna6 = D.fila("coruna", 197, 6, "común")
 coruna10 = D.fila("coruna", 197, 10, "común")
 c1, c2, c3 = st.columns(3)
 with c1:
-    E.hallazgo("Smaller circle, much less water",
+    E.hallazgo("Smaller circle, far fewer valid pixels",
                f"At A Coruña (T197) the valid pixels fall from {coruna10.sample_median_pixels:.0f}"
                f" to {coruna6.sample_median_pixels:.0f}, and at Ferrol from "
                f"{ferrol10.sample_median_pixels:.0f} to {ferrol6.sample_median_pixels:.0f} per pass.")
 with c2:
-    E.hallazgo("Where water is lacking, the comparison gets worse",
+    E.hallazgo("With very little valid coverage, the comparison can get worse",
                f"Ferrol at 6 km: the RMSE of SWOT + DAC rises from {E.num(ferrol10.A_rmse_wo_offset_cm, 1)} to "
                f"{E.num(ferrol6.A_rmse_wo_offset_cm, 1)} cm and ΔRMSE is {E.signo(ferrol6.dRMSE_AB_cm)} cm "
                f"{E.intervalo(ferrol6.dRMSE_AB_ci_low, ferrol6.dRMSE_AB_ci_high)}, above zero.")

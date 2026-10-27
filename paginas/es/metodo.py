@@ -31,7 +31,7 @@ with tab_metodo:
     st.latex(r"\eta_{SWOT} = \mathcal{A}(S + D), \qquad \eta_{TG} = H_{TG}(t_p) - T_{TG}(t_p), \qquad "
              r"d = \eta_{SWOT} - \eta_{TG}")
     st.markdown(
-        "Es la comparación **sin marea** de Han et al. (2026): cada sistema retira la marea con su propia "
+        "Sigue el enfoque **sin marea** de Han et al. (2026): cada sistema retira la marea con su propia "
         "predicción (FES2022 y HRET en SWOT; la predicción armónica de Puertos del Estado en el mareógrafo) y la "
         "respuesta atmosférica se conserva en los dos lados. No se transforma la referencia vertical: por eso el "
         "desplazamiento medio es un descriptor y la métrica principal es el RMSE sin desplazamiento.\n\n"

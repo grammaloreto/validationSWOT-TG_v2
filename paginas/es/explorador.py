@@ -13,8 +13,8 @@ E.cabecera(
     "Paso a paso, estación a estación",
     "Elige una estación, una pasada y un círculo de búsqueda. Cada punto es un paso de SWOT con su valor del "
     "mareógrafo a la misma hora. La línea morada es SWOT con la corrección atmosférica devuelta; la verde "
-    "discontinua, el modelo atmosférico solo. <b>Si SWOT aportara información propia, la morada debería "
-    "acercarse a la negra más que la verde.</b>",
+    "discontinua, el modelo atmosférico solo. <b>Si SWOT mejorara de forma medible al modelo atmosférico, la "
+    "morada se acercaría a la negra más que la verde.</b>",
 )
 
 c1, c2, c3 = st.columns([2, 1, 1])

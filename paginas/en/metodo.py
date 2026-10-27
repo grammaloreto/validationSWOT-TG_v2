@@ -31,7 +31,7 @@ with tab_metodo:
     st.latex(r"\eta_{SWOT} = \mathcal{A}(S + D), \qquad \eta_{TG} = H_{TG}(t_p) - T_{TG}(t_p), \qquad "
              r"d = \eta_{SWOT} - \eta_{TG}")
     st.markdown(
-        "This is the **non-tidal** comparison of Han et al. (2026): each system removes the tide with its own "
+        "It follows the **non-tidal** approach of Han et al. (2026): each system removes the tide with its own "
         "prediction (FES2022 and HRET for SWOT; the harmonic prediction of Puertos del Estado for the tide gauge) "
         "and the atmospheric response is retained on both sides. The vertical reference is not transformed: that "
         "is why the mean offset is a descriptor and the main metric is the RMSE without offset.\n\n"

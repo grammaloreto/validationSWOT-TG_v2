@@ -47,10 +47,11 @@ with c1:
         "de la del modelo atmosférico. Trabajaron además en la fase de repetición diaria, con la anomalía filtrada "
         "y una predicción armónica del propio registro.")
     E.hallazgo(
-        "Gómez-Enri et al. (2025): la marea importa",
-        "Con mareógrafos de Puertos del Estado en Huelva, Barcelona y Bilbao, encontraron que la elección del "
-        "modelo de marea cambia la concordancia de SWOT con los mareógrafos, en línea con el patrón regional que "
-        "observamos en Galicia.")
+        "Gómez-Enri et al. (2025): el modelo de marea cuenta",
+        "En un póster con mareógrafos de Puertos del Estado en Huelva, Barcelona y Bilbao, encontraron que la "
+        "elección del modelo de marea de SWOT cambia su concordancia con los mareógrafos (FES dio mejor resultado "
+        "que GOT). No analizan un patrón compartido entre estaciones, pero apoyan una idea de nuestro trabajo: el "
+        "tratamiento de la marea en cada lado condiciona la comparación.")
 with c2:
     E.hallazgo(
         "Lichtman et al. (2025) y Rong et al. (2026): otra pregunta",

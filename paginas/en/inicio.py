@@ -25,7 +25,7 @@ E.tarjetas([
     (f"{E.num(min(f.A_r for f in largas))}–{E.num(max(f.A_r for f in largas))}",
      "correlation of SWOT + DAC with the tide gauge in the long series", "📈"),
     (f"{con_cero} of {len(main)}",
-     "stations where SWOT does not demonstrably improve on the atmospheric model alone", "⚖️"),
+     "combinations with no demonstrated improvement from adding SWOT to the atmospheric model (DAC)", "⚖️"),
 ])
 
 st.markdown("### Three findings")
@@ -41,8 +41,8 @@ with c2:
     E.hallazgo(
         "Getting closer to the station does not improve the comparison",
         "Reducing the search circle from 10 to 6 km leaves fewer valid pixels and, in general, does not bring SWOT "
-        "closer to the tide gauge. The worst cases appear where the circle barely sees water: in the rías, "
-        "coverage matters more than proximity.", numero=2, acento="#eb6834")
+        "closer to the tide gauge. In some cases it severely limits valid coverage; in addition, it matters which "
+        "part of the sea the pixels represent relative to the port.", numero=2, acento="#eb6834")
     st.page_link("paginas/en/radio.py", label="See the sensitivity to the radius", icon=":material/arrow_forward:")
 with c3:
     E.hallazgo(
@@ -56,17 +56,18 @@ st.markdown("### What it means for the digital twin")
 a, b = st.columns(2)
 with a:
     st.markdown(
-        "- **SWOT is useful on the Galician coast, but its own contribution has to be demonstrated.** A good "
-        "correlation with the tide gauge is not enough: it has to be compared with that of the atmospheric model "
-        "alone.\n"
+        "- **A good correlation is not enough to show what SWOT contributes.** One has to check whether adding "
+        "SWOT reduces the error relative to the DAC alone; at these ports it does not do so demonstrably, which is "
+        "not the same as contributing nothing.\n"
         "- **Nearby stations are not independent tests.** Agreement among several of them does not confirm the "
         "result if they share the same pass and the same discrepancy.")
 with b:
     st.markdown(
         "- **The two tide predictions must be consistent.** Before interpreting a difference, one needs to know "
         "which tidal components each system removes.\n"
-        "- **Coverage matters more than proximity.** In rías and ports surrounded by land, the number of valid "
-        "pixels decides whether the comparison can be interpreted.")
+        "- **Valid coverage matters more than proximity.** In rías and ports surrounded by land, before "
+        "interpreting the comparison one should check how many valid pixels remain and which part of the sea they "
+        "represent relative to the port.")
 
 with st.expander("For those who want the detail: what exactly is compared"):
     st.markdown(

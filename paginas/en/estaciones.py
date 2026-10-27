@@ -66,7 +66,5 @@ with st.expander("Technical detail: data sources"):
         "- **Tide gauges:** hourly records of the REDMAR network of Puertos del Estado, unmodified. Each record "
         "provides the sea level, the astronomical prediction and their difference (meteorological residual). The "
         "hourly series are filtered averages of the high-frequency record.\n"
-        "- **Langosteira** is REDMAR station 3213 (quay A3), the only one in that port with clear instrument "
-        "provenance. An alternative record under the same name is excluded from the analysis.\n"
         "- **Names** as in the REDMAR network (San Cibrao, A Coruña, Ferrol, Langosteira, Villagarcía, Marín, "
         "Vigo).")

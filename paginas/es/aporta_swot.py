@@ -11,8 +11,9 @@ E.cabecera(
     "¿Aporta SWOT más que el modelo atmosférico?",
     "El mareógrafo registra el efecto de la presión y el viento sobre el mar, y por eso a SWOT se le devuelve la "
     "corrección atmosférica (DAC). Pero entonces el parecido con el mareógrafo puede venir del modelo atmosférico "
-    "y no del satélite. La pieza clave del diseño es comparar también <b>el DAC solo</b> con el mareógrafo: si SWOT "
-    "aporta información propia, SWOT + DAC debería acercarse al mareógrafo <b>más</b> que el DAC por sí solo.",
+    "y no del satélite. La pieza clave del diseño es comparar también <b>el DAC solo</b> con el mareógrafo: SWOT + DAC "
+    "tendría que acercarse al mareógrafo <b>más</b> que el DAC solo para mostrar una aportación medible del "
+    "satélite.",
 )
 
 incluir = st.toggle("Incluir los casos exploratorios", value=False)

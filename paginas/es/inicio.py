@@ -25,7 +25,7 @@ E.tarjetas([
     (f"{E.num(min(f.A_r for f in largas))}–{E.num(max(f.A_r for f in largas))}",
      "correlación de SWOT + DAC con el mareógrafo en las series largas", "📈"),
     (f"{con_cero} de {len(main)}",
-     "estaciones donde SWOT no mejora de forma demostrable al modelo atmosférico solo", "⚖️"),
+     "combinaciones sin mejora demostrada al añadir SWOT al modelo atmosférico (DAC)", "⚖️"),
 ])
 
 st.markdown("### Tres hallazgos")
@@ -41,8 +41,8 @@ with c2:
     E.hallazgo(
         "Acercarse más a la estación no mejora la comparación",
         "Reducir el círculo de búsqueda de 10 a 6 km deja menos píxeles válidos y, en general, no acerca SWOT al "
-        "mareógrafo. Los peores casos aparecen donde el círculo apenas ve agua: en las rías la cobertura importa "
-        "más que la cercanía.", numero=2, acento="#eb6834")
+        "mareógrafo. En algunos casos limita mucho la cobertura válida; además, importa qué zona del mar "
+        "representan los píxeles respecto al puerto.", numero=2, acento="#eb6834")
     st.page_link("paginas/es/radio.py", label="Ver la sensibilidad al radio", icon=":material/arrow_forward:")
 with c3:
     E.hallazgo(
@@ -56,16 +56,18 @@ st.markdown("### Qué significa para el gemelo digital")
 a, b = st.columns(2)
 with a:
     st.markdown(
-        "- **SWOT es útil en la costa gallega, pero su aportación propia hay que demostrarla.** Una buena "
-        "correlación con el mareógrafo no basta: hay que compararla con la del modelo atmosférico solo.\n"
+        "- **Una buena correlación no basta para demostrar la aportación de SWOT.** Hay que comprobar si añadir "
+        "SWOT reduce el error frente al DAC solo; en estos puertos no lo hace de forma demostrable, lo que no "
+        "equivale a que no aporte nada.\n"
         "- **Las estaciones cercanas no son pruebas independientes.** Que varias concuerden no confirma el "
         "resultado si comparten la misma pasada y la misma discrepancia.")
 with b:
     st.markdown(
         "- **Las dos predicciones de marea deben ser coherentes.** Antes de interpretar una diferencia, hay que "
         "saber qué componentes de marea retira cada sistema.\n"
-        "- **La cobertura importa más que la cercanía.** En rías y puertos rodeados de tierra, el número de "
-        "píxeles válidos decide si la comparación es interpretable.")
+        "- **La cobertura válida importa más que la cercanía.** En rías y puertos rodeados de tierra, antes de "
+        "interpretar la comparación conviene comprobar cuántos píxeles válidos quedan y qué zona del mar "
+        "representan respecto al puerto.")
 
 with st.expander("Para quien quiera el detalle: qué se compara exactamente"):
     st.markdown(

@@ -13,8 +13,8 @@ E.cabecera(
     "Pass by pass, station by station",
     "Choose a station, a track and a search circle. Each point is a SWOT pass with its tide gauge value at the "
     "same time. The purple line is SWOT with the atmospheric correction restored; the dashed green one, the "
-    "atmospheric model alone. <b>If SWOT added information of its own, the purple line should come closer to the "
-    "black one than the green one does.</b>",
+    "atmospheric model alone. <b>If SWOT measurably improved on the atmospheric model, the purple line would "
+    "come closer to the black one than the green one does.</b>",
 )
 
 c1, c2, c3 = st.columns([2, 1, 1])

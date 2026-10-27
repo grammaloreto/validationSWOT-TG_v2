@@ -12,8 +12,8 @@ E.cabecera(
     "The tide gauge records the effect of pressure and wind on the sea, and that is why the atmospheric "
     "correction (DAC) is restored to SWOT. But then the agreement with the tide gauge may come from the atmospheric "
     "model rather than from the satellite. The key piece of the design is to also compare <b>the DAC alone</b> with "
-    "the tide gauge: if SWOT adds information of its own, SWOT + DAC should come closer to the tide gauge <b>than</b> "
-    "the DAC does on its own.",
+    "the tide gauge: SWOT + DAC would have to come closer to the tide gauge <b>than</b> the DAC alone to show a "
+    "measurable contribution from the satellite.",
 )
 
 incluir = st.toggle("Include the exploratory cases", value=False)

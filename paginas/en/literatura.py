@@ -47,10 +47,11 @@ with c1:
         "from that of the atmospheric model. They also worked in the 1-day repeat phase, with the filtered anomaly "
         "and a harmonic prediction from the record itself.")
     E.hallazgo(
-        "Gómez-Enri et al. (2025): the tide matters",
-        "With Puertos del Estado tide gauges at Huelva, Barcelona and Bilbao, they found that the choice of tide "
-        "model changes the agreement of SWOT with the tide gauges, in line with the regional pattern we observe "
-        "in Galicia.")
+        "Gómez-Enri et al. (2025): the tide model counts",
+        "In a poster with Puertos del Estado tide gauges at Huelva, Barcelona and Bilbao, they found that the "
+        "choice of SWOT tide model changes its agreement with the tide gauges (FES performed better than GOT). They "
+        "do not analyse a pattern shared between stations, but they support one idea of our work: how the tide is "
+        "handled on each side shapes the comparison.")
 with c2:
     E.hallazgo(
         "Lichtman et al. (2025) and Rong et al. (2026): a different question",
