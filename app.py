@@ -1,9 +1,13 @@
 """
-Demo de la validación SWOT–mareógrafo (método por paso `pass_v2.2`), en español.
+Demo de la validación SWOT–mareógrafo (método por paso `pass_v2.2`), en español e inglés.
 
 Aplicación multipágina de Streamlit que presenta las validaciones corregidas: resultados por estación, comparación
 con el DAC solo, sensibilidad al radio, patrón regional, contexto bibliográfico y método. Lee solo salidas
 versionadas en `datos/` (series de `pass_v2.2` y tabla maestra v2); no recalcula métricas ni llama a ninguna API.
+
+El idioma se elige en la barra lateral y se refleja en la URL (`?lang=es` / `?lang=en`). Cada idioma tiene sus
+páginas en `paginas/<idioma>/`, con los mismos nombres de archivo, para que al cambiar de idioma se siga en la
+misma página.
 
 Uso (desde la raíz del repo):
   streamlit run app.py
@@ -13,28 +17,44 @@ from pathlib import Path
 
 import streamlit as st
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+RAIZ = Path(__file__).resolve().parent
+sys.path.insert(0, str(RAIZ))
 
-st.set_page_config(page_title="Validación SWOT – mareógrafos · Galicia", page_icon=":material/waves:",
+from nucleo import textos as T  # noqa: E402
+
+# Primera visita: idioma de la URL (?lang=), o español. Después manda el selector.
+if "idioma" not in st.session_state:
+    lang = st.query_params.get("lang", T.POR_DEFECTO)
+    st.session_state.idioma = lang if lang in T.IDIOMAS else T.POR_DEFECTO
+
+st.set_page_config(page_title=T.t("titulo_app"), page_icon=":material/waves:",
                    layout="wide", initial_sidebar_state="expanded")
 
-PAGINAS = Path(__file__).resolve().parent / "paginas"
+st.sidebar.radio("Idioma / Language", options=list(T.IDIOMAS), format_func=T.IDIOMAS.get, key="idioma",
+                 horizontal=True, label_visibility="collapsed")
+st.query_params["lang"] = T.idioma()
+
+CARPETA = RAIZ / "paginas" / T.idioma()
+# (sección, [(archivo, título, icono)])
+PAGINAS = [
+    ("sec_resumen", [("inicio", "pag_inicio", ":material/home:")]),
+    ("sec_resultados", [
+        ("estaciones", "pag_estaciones", ":material/map:"),
+        ("explorador", "pag_explorador", ":material/query_stats:"),
+        ("aporta_swot", "pag_aporta", ":material/compare_arrows:"),
+        ("radio", "pag_radio", ":material/radar:"),
+        ("regional", "pag_regional", ":material/hub:"),
+    ]),
+    ("sec_contexto", [
+        ("literatura", "pag_literatura", ":material/menu_book:"),
+        ("metodo", "pag_metodo", ":material/fact_check:"),
+    ]),
+]
 
 navegacion = st.navigation({
-    "Resumen": [
-        st.Page(PAGINAS / "inicio.py", title="Inicio", icon=":material/home:", default=True),
-    ],
-    "Resultados": [
-        st.Page(PAGINAS / "estaciones.py", title="Estaciones y datos", icon=":material/map:"),
-        st.Page(PAGINAS / "explorador.py", title="Explorador por estación", icon=":material/query_stats:"),
-        st.Page(PAGINAS / "aporta_swot.py", title="¿Aporta SWOT?", icon=":material/compare_arrows:"),
-        st.Page(PAGINAS / "radio.py", title="Radio de búsqueda", icon=":material/radar:"),
-        st.Page(PAGINAS / "regional.py", title="Patrón regional", icon=":material/hub:"),
-    ],
-    "Contexto": [
-        st.Page(PAGINAS / "literatura.py", title="Otros estudios", icon=":material/menu_book:"),
-        st.Page(PAGINAS / "metodo.py", title="Método", icon=":material/fact_check:"),
-    ],
+    T.t(seccion): [st.Page(CARPETA / f"{archivo}.py", title=T.t(titulo), icon=icono, default=archivo == "inicio")
+                   for archivo, titulo, icono in paginas]
+    for seccion, paginas in PAGINAS
 })
 
 navegacion.run()

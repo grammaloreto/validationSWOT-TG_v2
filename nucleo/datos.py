@@ -37,39 +37,17 @@ REFERENCIA_MODO_COMUN = {197: ["cibrao", "coruna", "ferrol"], 154: ["coruna", "f
 # id interno → nombre en la red REDMAR, color y marcador (paleta categórica de las figuras del paper).
 # `langosteira` (registro alternativo de T154, procedencia instrumental no establecida) queda fuera del demo,
 # como del paper; Langosteira es siempre la estación REDMAR 3213 (`langosteira_2`).
+# Zonas, condiciones de los casos exploratorios y motivos de exclusión, por idioma, en `textos.py`.
 ESTACIONES = {
-    "cibrao": {"nombre": "San Cibrao", "color": "#1baf7a", "marcador": "triangle-up", "zona": "Costa norte (A Mariña)"},
-    "coruna": {"nombre": "A Coruña", "color": "#2a78d6", "marcador": "circle", "zona": "Golfo Ártabro"},
-    "ferrol": {"nombre": "Ferrol", "color": "#eb6834", "marcador": "square", "zona": "Ría de Ferrol"},
-    "langosteira_2": {"nombre": "Langosteira", "color": "#eda100", "marcador": "diamond",
-                      "zona": "Puerto exterior de A Coruña (REDMAR 3213)"},
-    "villagarcia": {"nombre": "Villagarcía", "color": "#e87ba4", "marcador": "triangle-down",
-                    "zona": "Ría de Arousa (interior)"},
-    "marin": {"nombre": "Marín", "color": "#8a8983", "marcador": "cross", "zona": "Ría de Pontevedra"},
-    "vigo": {"nombre": "Vigo", "color": "#5c5b56", "marcador": "x", "zona": "Ría de Vigo"},
+    "cibrao": {"nombre": "San Cibrao", "color": "#1baf7a", "marcador": "triangle-up"},
+    "coruna": {"nombre": "A Coruña", "color": "#2a78d6", "marcador": "circle"},
+    "ferrol": {"nombre": "Ferrol", "color": "#eb6834", "marcador": "square"},
+    "langosteira_2": {"nombre": "Langosteira", "color": "#eda100", "marcador": "diamond"},
+    "villagarcia": {"nombre": "Villagarcía", "color": "#e87ba4", "marcador": "triangle-down"},
+    "marin": {"nombre": "Marín", "color": "#8a8983", "marcador": "cross"},
+    "vigo": {"nombre": "Vigo", "color": "#5c5b56", "marcador": "x"},
 }
 ORDEN = list(ESTACIONES)
-
-# Condición que define cada caso exploratorio (texto propio del demo; equivale a la Tabla 2 de resultados)
-CONDICION = {
-    ("marin", 197): "Cobertura válida escasa (mediana de 130 píxeles por paso) y pasos de calidad o "
-                    "representatividad incierta.",
-    ("vigo", 197): "Pocas fechas con datos del mareógrafo y un paso de calidad o representatividad incierta.",
-    ("langosteira_2", 154): "Pocas fechas con datos del mareógrafo (5 pares).",
-    ("villagarcia", 154): "SWOT solo cubre la estación en los ciclos 23–29 (5 pares).",
-    ("marin", 154): "Mediana de 36 píxeles válidos por paso: el círculo apenas ve agua.",
-    ("vigo", 154): "Pocas fechas con datos del mareógrafo (7 pares).",
-    ("langosteira_2", 197): "Serie principal con pocos pares (7): pesa mucho menos que las de 23–25.",
-}
-
-MOTIVOS = {
-    "no_tide_gauge_data": "Sin registro del mareógrafo ese día",
-    "api_returned_no_swot_data": "SWOT no devolvió datos (sin archivo o sin píxeles en el círculo)",
-    "no_swot_pixels_in_circle": "Sin píxeles válidos de SWOT en el círculo",
-    "tg_after_pass_not_in_daily_file": "Falta la hora posterior al paso en el archivo diario del mareógrafo",
-    "pass_not_on_tg_file_date": "La fecha del paso no coincide con la del archivo del mareógrafo",
-    "tg_bracketing_observations_missing": "Falta alguna de las dos horas que rodean el paso",
-}
 
 COLUMNAS_VALIDAS = ["swot_corrected", "swot_l3", "dac_median", "tg_residual"]
 

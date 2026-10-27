@@ -8,6 +8,8 @@ import html
 
 import streamlit as st
 
+from .textos import t
+
 TINTA = "#1a1a19"
 GRIS = "#6b6a64"
 REJILLA = "#e4e3de"
@@ -17,10 +19,6 @@ COLOR_A = "#6250d6"   # A: SWOT + DAC
 COLOR_B = "#008300"   # B: DAC solo
 COLOR_TG = TINTA      # mareógrafo
 COLOR_TRACK = {197: "#2a78d6", 154: "#eb6834"}
-
-ETIQUETA_A = "SWOT + DAC"
-ETIQUETA_B = "DAC solo (modelo atmosférico)"
-ETIQUETA_TG = "Mareógrafo (nivel − marea)"
 
 _CSS = f"""
 <style>
@@ -122,8 +120,8 @@ def aviso(texto):
 
 
 def papel(rol):
-    clase, texto = ("dvv-main", "principal") if rol == "principal" else ("dvv-expl", "exploratoria")
-    return f'<span class="dvv-pill {clase}">{texto}</span>'
+    clase = "dvv-main" if rol == "principal" else "dvv-expl"
+    return f'<span class="dvv-pill {clase}">{t("principal" if rol == "principal" else "exploratoria")}</span>'
 
 
 def signo(x, dec=1):

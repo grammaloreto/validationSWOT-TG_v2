@@ -13,6 +13,9 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
+El idioma (español o inglés) se elige en la barra lateral; también se puede abrir directamente con `?lang=en`
+al final de la URL.
+
 ## Datos
 
 El demo solo lee los archivos de `datos/`: la tabla de resultados, las series por paso de cada estación y radio

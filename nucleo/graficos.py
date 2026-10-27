@@ -1,14 +1,15 @@
 """
 Gráficos interactivos (Plotly) del demo. Cada función recibe datos ya leídos por `datos.py` y no calcula métricas:
 las r, RMSE e intervalos que aparecen en títulos y etiquetas vienen de la tabla maestra o de las salidas guardadas.
+Los textos (leyendas, ejes, ventanas emergentes) salen de `textos.py` en el idioma elegido.
 """
 import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 from . import datos as D
-from .estilo import (COLOR_A, COLOR_B, COLOR_TG, COLOR_TRACK, ETIQUETA_A, ETIQUETA_B, ETIQUETA_TG, GRIS, REJILLA,
-                     SUPERFICIE, TINTA, signo)
+from .estilo import COLOR_A, COLOR_B, COLOR_TG, COLOR_TRACK, GRIS, REJILLA, SUPERFICIE, TINTA, signo
+from .textos import componentes as _componentes, t, zona
 
 FUENTE = dict(family="Inter, -apple-system, Segoe UI, Helvetica, Arial, sans-serif", size=13, color=TINTA)
 
@@ -91,8 +92,8 @@ def mapa(radio=10, papeles=None, alto=600, destacar=None):
             x=[x0], y=[y0], mode="markers", showlegend=False,
             marker=dict(size=12 if s == destacar else 10, color=e["color"], symbol=e["marcador"],
                         line=dict(color="white", width=1)),
-            hovertemplate=f"<b>{e['nombre']}</b><br>{e['zona']}<br>{y0:.2f}° N, {abs(x0):.2f}° O"
-                          f"<br>Papel: {papeles.get(s, '—')}<extra></extra>"))
+            hovertemplate=f"<b>{e['nombre']}</b><br>{zona(s)}<br>{y0:.2f}° N, {abs(x0):.2f}° {t('oeste')}"
+                          f"<br>{t('papel')}: {t(papeles[s]) if s in papeles else '—'}<extra></extra>"))
         fig.add_annotation(x=x0 + dx, y=y0 + dy, text=e["nombre"], showarrow=False,
                            xanchor="left" if dx > 0 else "right", font=dict(size=12, color=TINTA))
     lon_min, lon_max, lat_min, lat_max = EXTENSION
@@ -110,17 +111,17 @@ def mapa(radio=10, papeles=None, alto=600, destacar=None):
 
 def serie_estacion(ok, desplazamiento_cm, alto=420):
     """Residuo del mareógrafo, SWOT+DAC menos su desplazamiento medio y DAC solo, por paso (cm)."""
-    t = ok.pass_time_utc
-    hover = "Ciclo %{customdata}<br>%{x|%Y-%m-%d %H:%M} UTC<br>%{y:.1f} cm<extra>%{fullData.name}</extra>"
+    hover = t("ciclo") + " %{customdata}<br>%{x|%Y-%m-%d %H:%M} UTC<br>%{y:.1f} cm<extra>%{fullData.name}</extra>"
+    tiempo = ok.pass_time_utc
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=t, y=100 * ok.tg_residual, name=ETIQUETA_TG, mode="lines+markers",
+    fig.add_trace(go.Scatter(x=tiempo, y=100 * ok.tg_residual, name=t("etiqueta_tg"), mode="lines+markers",
                              line=dict(color=COLOR_TG, width=2), marker=dict(size=7), customdata=ok.cycle,
                              hovertemplate=hover))
-    fig.add_trace(go.Scatter(x=t, y=100 * ok.swot_corrected - desplazamiento_cm,
-                             name=f"{ETIQUETA_A} − desplazamiento medio", mode="lines+markers",
+    fig.add_trace(go.Scatter(x=tiempo, y=100 * ok.swot_corrected - desplazamiento_cm,
+                             name=t("menos_desplazamiento", a=t("etiqueta_a")), mode="lines+markers",
                              line=dict(color=COLOR_A, width=2), marker=dict(size=7, symbol="square"),
                              customdata=ok.cycle, hovertemplate=hover))
-    fig.add_trace(go.Scatter(x=t, y=100 * ok.dac_median, name=ETIQUETA_B, mode="lines+markers",
+    fig.add_trace(go.Scatter(x=tiempo, y=100 * ok.dac_median, name=t("etiqueta_b"), mode="lines+markers",
                              line=dict(color=COLOR_B, width=1.6, dash="dash"),
                              marker=dict(size=6, symbol="triangle-up"), customdata=ok.cycle, hovertemplate=hover))
     fig.add_hline(y=0, line_color=REJILLA)
@@ -132,32 +133,35 @@ def dispersion_ab(ok, desplazamiento_cm, alto=380):
     """SWOT+DAC (sin desplazamiento) y DAC solo frente al mareógrafo, con la recta 1:1."""
     tg = 100 * ok.tg_residual
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=tg, y=100 * ok.swot_corrected - desplazamiento_cm, mode="markers", name=ETIQUETA_A,
-                             marker=dict(color=COLOR_A, size=8, symbol="square"), customdata=ok.cycle,
-                             hovertemplate="Ciclo %{customdata}<br>TG %{x:.1f} cm · SWOT+DAC %{y:.1f} cm"
-                                           "<extra></extra>"))
-    fig.add_trace(go.Scatter(x=tg, y=100 * ok.dac_median, mode="markers", name=ETIQUETA_B,
+    fig.add_trace(go.Scatter(x=tg, y=100 * ok.swot_corrected - desplazamiento_cm, mode="markers",
+                             name=t("etiqueta_a"), marker=dict(color=COLOR_A, size=8, symbol="square"),
+                             customdata=ok.cycle,
+                             hovertemplate=t("ciclo") + " %{customdata}<br>TG %{x:.1f} cm · SWOT+DAC %{y:.1f} cm"
+                                                        "<extra></extra>"))
+    fig.add_trace(go.Scatter(x=tg, y=100 * ok.dac_median, mode="markers", name=t("etiqueta_b"),
                              marker=dict(color=COLOR_B, size=7, symbol="triangle-up"), customdata=ok.cycle,
-                             hovertemplate="Ciclo %{customdata}<br>TG %{x:.1f} cm · DAC %{y:.1f} cm<extra></extra>"))
+                             hovertemplate=t("ciclo") + " %{customdata}<br>TG %{x:.1f} cm · DAC %{y:.1f} cm"
+                                                        "<extra></extra>"))
     lim = float(np.nanmax(np.abs(np.r_[tg, 100 * ok.swot_corrected - desplazamiento_cm, 100 * ok.dac_median]))) * 1.1
     fig.add_trace(go.Scatter(x=[-lim, lim], y=[-lim, lim], mode="lines", line=dict(color=GRIS, dash="dot", width=1),
                              name="1:1", hoverinfo="skip"))
-    fig.update_xaxes(title="Mareógrafo (cm)", range=[-lim, lim])
-    fig.update_yaxes(title="Satélite / modelo (cm)", range=[-lim, lim], scaleanchor="x", scaleratio=1)
+    fig.update_xaxes(title=t("eje_tg"), range=[-lim, lim])
+    fig.update_yaxes(title=t("eje_satelite"), range=[-lim, lim], scaleanchor="x", scaleratio=1)
     return _base(fig, alto)
 
 
 def cobertura(df, alto=300):
     """Píxeles en el círculo y tras cada filtro, por ciclo (incluidos los excluidos, en blanco)."""
     fig = go.Figure()
-    for col, etq, color in (("pixels_in_circle", "En el círculo", REJILLA),
-                            ("pixels_after_quality_flag", "Calidad = 0", "#9db8d9"),
-                            ("pixels_after_mad", "Tras valores atípicos", "#0f4c75")):
+    for col, etq, color in (("pixels_in_circle", t("cob_circulo"), REJILLA),
+                            ("pixels_after_quality_flag", t("cob_calidad"), "#9db8d9"),
+                            ("pixels_after_mad", t("cob_atipicos"), "#0f4c75")):
         fig.add_trace(go.Bar(x=df.cycle, y=df[col], name=etq, marker_color=color,
-                             hovertemplate="Ciclo %{x}: %{y:.0f} píxeles<extra>" + etq + "</extra>"))
+                             hovertemplate=t("ciclo") + " %{x}: %{y:.0f} " + t("pixeles") + "<extra>" + etq
+                                           + "</extra>"))
     fig.update_layout(barmode="overlay")
-    fig.update_xaxes(title="Ciclo", dtick=2)
-    fig.update_yaxes(title="Píxeles")
+    fig.update_xaxes(title=t("ciclo"), dtick=2)
+    fig.update_yaxes(title=t("Pixeles"))
     return _base(fig, alto)
 
 
@@ -169,16 +173,15 @@ def forest(filas, alto=None):
     y = [e for e, _ in filas]
     alto = alto or 120 + 42 * len(filas)
     fig = make_subplots(rows=1, cols=3, shared_yaxes=True, horizontal_spacing=0.04, column_widths=[0.3, 0.3, 0.4],
-                        subplot_titles=("Correlación r", "RMSE sin desplazamiento (cm)",
-                                        "ΔRMSE A − B (cm) e IC 95 %"))
+                        subplot_titles=(t("forest_r"), t("forest_rmse"), t("drmse_ic")))
     for col, (ca, cb) in enumerate((("A_r", "B_r"), ("A_rmse_wo_offset_cm", "B_rmse_wo_offset_cm")), start=1):
         for e, f in filas:
             fig.add_trace(go.Scatter(x=[f[ca], f[cb]], y=[e, e], mode="lines", line=dict(color=REJILLA, width=3),
                                      showlegend=False, hoverinfo="skip"), row=1, col=col)
-        fig.add_trace(go.Scatter(x=[f[ca] for _, f in filas], y=y, mode="markers", name=f"A: {ETIQUETA_A}",
+        fig.add_trace(go.Scatter(x=[f[ca] for _, f in filas], y=y, mode="markers", name=f"A: {t('etiqueta_a')}",
                                  marker=dict(color=COLOR_A, size=11), showlegend=col == 1,
                                  hovertemplate="%{y}<br>A: %{x:.2f}<extra></extra>"), row=1, col=col)
-        fig.add_trace(go.Scatter(x=[f[cb] for _, f in filas], y=y, mode="markers", name="B: DAC solo",
+        fig.add_trace(go.Scatter(x=[f[cb] for _, f in filas], y=y, mode="markers", name=f"B: {t('etiqueta_b_corta')}",
                                  marker=dict(color=COLOR_B, size=10, symbol="square"), showlegend=col == 1,
                                  hovertemplate="%{y}<br>B: %{x:.2f}<extra></extra>"), row=1, col=col)
     d = np.array([f.dRMSE_AB_cm for _, f in filas])
@@ -190,7 +193,7 @@ def forest(filas, alto=None):
         marker=dict(color=[("#b3261e" if c else TINTA) for c in concluyente], size=10),
         error_x=dict(type="data", symmetric=False, array=hi - d, arrayminus=d - lo, color=GRIS, thickness=2, width=0),
         customdata=np.c_[lo, hi],
-        hovertemplate="%{y}<br>ΔRMSE %{x:+.1f} cm<br>IC 95 % [%{customdata[0]:+.1f}, %{customdata[1]:+.1f}]"
+        hovertemplate="%{y}<br>ΔRMSE %{x:+.1f} cm<br>" + t("ic95") + " [%{customdata[0]:+.1f}, %{customdata[1]:+.1f}]"
                       "<extra></extra>"), row=1, col=3)
     fig.add_vline(x=0, line_dash="dash", line_color=GRIS, row=1, col=3)
     fig.update_yaxes(autorange="reversed")
@@ -203,7 +206,7 @@ def forest(filas, alto=None):
 def radio_track(track, estaciones, alto=420):
     """ΔRMSE A − B (IC 95 %) y píxeles válidos a 6/8/10 km, muestra común a los tres radios."""
     fig = make_subplots(rows=1, cols=2, horizontal_spacing=0.1,
-                        subplot_titles=("ΔRMSE A − B (cm) e IC 95 %", "Píxeles válidos por paso (mediana)"))
+                        subplot_titles=(t("drmse_ic"), t("pixeles_mediana")))
     salto = np.linspace(-0.3, 0.3, max(len(estaciones), 2))
     for j, s in zip(salto, estaciones):
         e = D.ESTACIONES[s]
@@ -221,19 +224,20 @@ def radio_track(track, estaciones, alto=420):
                          thickness=1.4, width=0),
             customdata=np.c_[D.RADIOS, lo, hi],
             hovertemplate=(e["nombre"] + " · %{customdata[0]:.0f} km<br>ΔRMSE %{y:+.1f} cm"
-                           "<br>IC [%{customdata[1]:+.1f}, %{customdata[2]:+.1f}]<extra></extra>")), row=1, col=1)
+                           "<br>" + t("ic") + " [%{customdata[1]:+.1f}, %{customdata[2]:+.1f}]<extra></extra>")),
+            row=1, col=1)
         fig.add_trace(go.Scatter(
             x=list(D.RADIOS), y=[f.sample_median_pixels for f in ff], mode="lines+markers", name=nom,
             legendgroup=s, showlegend=False, line=dict(color=e["color"], width=2),
             marker=dict(symbol=e["marcador"], size=10, color=e["color"]),
-            hovertemplate=e["nombre"] + " · %{x} km<br>%{y:.0f} píxeles<extra></extra>"), row=1, col=2)
+            hovertemplate=e["nombre"] + " · %{x} km<br>%{y:.0f} " + t("pixeles") + "<extra></extra>"), row=1, col=2)
     fig.add_hline(y=0, line_dash="dash", line_color=GRIS, row=1, col=1)
-    fig.update_xaxes(tickvals=list(D.RADIOS), title="Radio de búsqueda (km)")
+    fig.update_xaxes(tickvals=list(D.RADIOS), title=t("eje_radio"))
     fig.update_yaxes(title="cm", row=1, col=1)
     # Log con marcas fijas: sin etiquetas en las divisiones menores (2, 3… 9)
     fig.update_yaxes(type="log", tickvals=[10, 20, 50, 100, 200, 500, 1000, 2000, 5000],
                      ticktext=["10", "20", "50", "100", "200", "500", "1000", "2000", "5000"],
-                     title="píxeles", row=1, col=2)
+                     title=t("pixeles"), row=1, col=2)
     return _base(fig, alto, subtitulos=True)
 
 
@@ -249,12 +253,14 @@ def regional_d(track, alto=400):
         fig.add_trace(go.Scatter(x=tiempos, y=d[s], name=e["nombre"], mode="lines+markers",
                                  line=dict(color=e["color"], width=1.3), marker=dict(symbol=e["marcador"], size=7),
                                  customdata=d.index,
-                                 hovertemplate="Ciclo %{customdata}: %{y:+.1f} cm<extra>" + e["nombre"] + "</extra>"))
-    fig.add_trace(go.Scatter(x=tiempos, y=cm, name=f"Modo común (T{track})", mode="lines",
+                                 hovertemplate=t("ciclo") + " %{customdata}: %{y:+.1f} cm<extra>" + e["nombre"]
+                                               + "</extra>"))
+    fig.add_trace(go.Scatter(x=tiempos, y=cm, name=t("modo_comun_track", track=track), mode="lines",
                              line=dict(color=TINTA, width=4), customdata=d.index,
-                             hovertemplate="Ciclo %{customdata}: %{y:+.1f} cm<extra>Modo común</extra>"))
+                             hovertemplate=t("ciclo") + " %{customdata}: %{y:+.1f} cm<extra>" + t("modo_comun")
+                                           + "</extra>"))
     fig.add_hline(y=0, line_color=REJILLA)
-    fig.update_yaxes(title="d centrada (cm)")
+    fig.update_yaxes(title=t("d_centrada"))
     return _base(fig, alto)
 
 
@@ -270,12 +276,12 @@ def entre_tracks(alto=420):
     fig.add_trace(go.Scatter(x=cm197.loc[both], y=cm154.loc[both], mode="markers", showlegend=False,
                              marker=dict(color=TINTA, size=10, line=dict(color="white", width=1)),
                              customdata=np.c_[both, t154.loc[both].dt.strftime("%Y-%m-%d")],
-                             hovertemplate="Ciclo %{customdata[0]} (%{customdata[1]})<br>T197 %{x:+.1f} cm"
-                                           "<br>T154 %{y:+.1f} cm<extra></extra>"))
+                             hovertemplate=t("ciclo") + " %{customdata[0]} (%{customdata[1]})<br>T197 %{x:+.1f} cm"
+                                                        "<br>T154 %{y:+.1f} cm<extra></extra>"))
     fig.add_annotation(x=0.03, y=0.97, xref="paper", yref="paper", showarrow=False, align="left",
-                       text=f"r = {g['r']:.2f} (n = {g['n']} ciclos)", font=dict(size=14))
-    fig.update_xaxes(title="Modo común, track 197 (cm)", range=[-lim, lim])
-    fig.update_yaxes(title="Modo común, track 154 (cm)", range=[-lim, lim], scaleanchor="x", scaleratio=1)
+                       text=f"r = {g['r']:.2f} (n = {g['n']} {t('ciclos')})", font=dict(size=14))
+    fig.update_xaxes(title=t("eje_modo_comun_track", track=197), range=[-lim, lim])
+    fig.update_yaxes(title=t("eje_modo_comun_track", track=154), range=[-lim, lim], scaleanchor="x", scaleratio=1)
     return _base(fig, alto, leyenda=False)
 
 
@@ -291,37 +297,29 @@ def modo_comun_mareas(alto=420):
             x=x, y=y, mode="markers", name=f"Track {track}: r = {r:.2f} (n = {n})",
             marker=dict(symbol=simbolo, size=10, color=relleno, line=dict(color=TINTA, width=1.5)),
             customdata=np.c_[ciclos, tiempos.loc[ciclos].dt.strftime("%Y-%m-%d")],
-            hovertemplate="T" + str(track) + " · ciclo %{customdata[0]} (%{customdata[1]})"
-                                             "<br>Δ predicciones %{x:+.1f} cm<br>Modo común %{y:+.1f} cm"
-                                             "<extra></extra>"))
+            hovertemplate="T" + str(track) + " · " + t("ciclo_min") + " %{customdata[0]} (%{customdata[1]})"
+                          "<br>" + t("delta_predicciones") + " %{x:+.1f} cm<br>" + t("modo_comun")
+                          + " %{y:+.1f} cm<extra></extra>"))
         lim = max(lim, float(np.nanmax(np.abs(np.r_[x, y]))) * 1.15)
     fig.add_trace(go.Scatter(x=[-lim, lim], y=[-lim, lim], mode="lines", line=dict(color=REJILLA, width=1),
                              hoverinfo="skip", showlegend=False))
-    fig.update_xaxes(title="Predicción del mareógrafo − marea de SWOT (cm)", range=[-lim, lim])
-    fig.update_yaxes(title="Modo común (cm)", range=[-lim, lim], scaleanchor="x", scaleratio=1)
+    fig.update_xaxes(title=t("eje_predicciones"), range=[-lim, lim])
+    fig.update_yaxes(title=t("eje_modo_comun"), range=[-lim, lim], scaleanchor="x", scaleratio=1)
     return _base(fig, alto)
-
-
-COMPONENTES = {
-    "difference": "d = SWOT + DAC − mareógrafo",
-    "tide_prediction_difference_m": "Predicción del mareógrafo − marea oceánica e interna de SWOT",
-    "agg_ssha_unfiltered": "Anomalía de SWOT (SSHA)",
-    "agg_dac": "DAC",
-    "tg_residual": "Residuo del mareógrafo",
-}
 
 
 def componentes(track, alto=None):
     sub, ciclos, medias, tiempos = D.descomp_centrada(track)
     est = D.REFERENCIA_MODO_COMUN[track]
-    cols = list(COMPONENTES)
+    nombres = _componentes()
+    cols = list(nombres)
     titulos = []
     for c in cols:
         if c == "difference":
-            titulos.append(COMPONENTES[c])
+            titulos.append(nombres[c])
         else:
             r, n = D.r_guardada(track, c)
-            titulos.append(f"{COMPONENTES[c]} · r con el modo común {signo(r, 2)} (n {n})")
+            titulos.append(f"{nombres[c]} · {t('r_con_modo_comun')} {signo(r, 2)} (n {n})")
     fig = make_subplots(rows=len(cols), cols=1, shared_xaxes=True, vertical_spacing=0.05, subplot_titles=titulos)
     for i, c in enumerate(cols, start=1):
         for s in est:
@@ -332,8 +330,9 @@ def componentes(track, alto=None):
                                      line=dict(color=e["color"], width=1.1), marker=dict(symbol=e["marcador"], size=6),
                                      hovertemplate="%{y:+.1f} cm<extra>" + e["nombre"] + "</extra>"), row=i, col=1)
         fig.add_trace(go.Scatter(x=tiempos.loc[ciclos], y=100 * medias.loc[ciclos, c + "_c"], mode="lines",
-                                 name="Media del track", legendgroup="media", showlegend=i == 1,
-                                 line=dict(color=TINTA, width=3), hovertemplate="%{y:+.1f} cm<extra>media</extra>"),
+                                 name=t("media_track"), legendgroup="media", showlegend=i == 1,
+                                 line=dict(color=TINTA, width=3),
+                                 hovertemplate="%{y:+.1f} cm<extra>" + t("media") + "</extra>"),
                       row=i, col=1)
         fig.update_yaxes(title_text="cm", row=i, col=1)
     _base(fig, alto or 190 * len(cols), subtitulos=True)

@@ -6,7 +6,10 @@ import streamlit as st
 from nucleo import datos as D
 from nucleo import estilo as E
 from nucleo import graficos as G
+from nucleo import textos as T
 
+E.aplicar()
+E.aviso(T.t("traduccion_pendiente"))  # retirar al traducir la página
 E.cabecera(
     "Resultados · Explorador",
     "Paso a paso, estación a estación",
@@ -32,8 +35,8 @@ ok = D.validos(df)
 
 st.markdown(f"#### {D.nombre(station)} · track {track} · {radio} km &nbsp; {E.papel(f10.role)}",
             unsafe_allow_html=True)
-if (station, track) in D.CONDICION:
-    E.nota(f"<b>Condición:</b> {D.CONDICION[(station, track)]}")
+if T.condicion(station, track):
+    E.nota(f"<b>Condición:</b> {T.condicion(station, track)}")
 
 if f is None or pd.isna(f.A_r):
     E.aviso(f"Con {len(ok)} pares válidos a {radio} km no se calculan métricas (mínimo 5).")
@@ -97,7 +100,7 @@ with st.expander("Tabla de pasos (incluidos los excluidos y su motivo)"):
     tabla = df[["cycle", "status", "exclusion_reason", "pass_time_utc", "pixels_in_circle", "pixels_after_mad",
                 "n_segments", "swot_corrected", "dac_median", "tg_residual", "difference"]].copy()
     tabla["status"] = np.where(tabla.status == "ok", "válido", "excluido")
-    tabla["exclusion_reason"] = tabla.exclusion_reason.map(D.MOTIVOS)
+    tabla["exclusion_reason"] = tabla.exclusion_reason.map(T.motivos())
     for c in ("swot_corrected", "dac_median", "tg_residual", "difference"):
         tabla[c] = 100 * tabla[c]
     tabla.columns = ["Ciclo", "Estado", "Motivo", "Hora del paso (UTC)", "Píxeles en el círculo",

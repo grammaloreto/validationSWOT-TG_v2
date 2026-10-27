@@ -5,6 +5,7 @@ import streamlit as st
 from nucleo import datos as D
 from nucleo import estilo as E
 from nucleo import graficos as G
+from nucleo import textos as T
 
 E.cabecera(
     "Resultados · Estaciones y datos",
@@ -51,10 +52,10 @@ st.markdown(
 
 ex = D.resumen_exclusiones()
 ex = ex[ex.radius_km == radio]
-resumen = (ex.assign(Motivo=ex.exclusion_reason.map(D.MOTIVOS).fillna("Par válido"))
+resumen = (ex.assign(Motivo=ex.exclusion_reason.map(T.motivos()).fillna("Par válido"))
              .groupby(["track", "Motivo"]).size().unstack("track").fillna(0).astype(int))
 resumen.columns = [f"Track {c}" for c in resumen.columns]
-orden = ["Par válido"] + [m for m in D.MOTIVOS.values() if m in resumen.index]
+orden = ["Par válido"] + [m for m in T.motivos().values() if m in resumen.index]
 st.dataframe(resumen.loc[orden], use_container_width=True)
 st.caption(f"Recuento de pasos por motivo, sumando las siete estaciones, a {radio} km.")
 

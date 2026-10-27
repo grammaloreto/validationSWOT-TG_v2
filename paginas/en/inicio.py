@@ -3,7 +3,10 @@ import streamlit as st
 
 from nucleo import datos as D
 from nucleo import estilo as E
+from nucleo import textos as T
 
+E.aplicar()
+E.aviso(T.t("traduccion_pendiente"))  # retirar al traducir la página
 E.portada(
     "Gemelo Digital del Océano · Validación",
     "¿Cuánto se parece SWOT a los mareógrafos de Galicia?",
@@ -36,21 +39,21 @@ with c1:
         "Con la corrección atmosférica (DAC) devuelta, SWOT sube y baja con el mareógrafo. Pero el DAC por sí "
         "solo consigue correlaciones parecidas y un error algo menor. Gran parte del parecido lo explica ya el "
         "efecto de la presión y el viento.", numero=1, acento=E.COLOR_A)
-    st.page_link("paginas/aporta_swot.py", label="Ver la comparación", icon=":material/arrow_forward:")
+    st.page_link("paginas/en/aporta_swot.py", label="Ver la comparación", icon=":material/arrow_forward:")
 with c2:
     E.hallazgo(
         "Acercarse más a la estación no mejora la comparación",
         "Reducir el círculo de búsqueda de 10 a 6 km deja menos píxeles válidos y, en general, no acerca SWOT al "
         "mareógrafo. Los peores casos aparecen donde el círculo apenas ve agua: en las rías la cobertura importa "
         "más que la cercanía.", numero=2, acento="#eb6834")
-    st.page_link("paginas/radio.py", label="Ver la sensibilidad al radio", icon=":material/arrow_forward:")
+    st.page_link("paginas/en/radio.py", label="Ver la sensibilidad al radio", icon=":material/arrow_forward:")
 with c3:
     E.hallazgo(
         "Las estaciones comparten una misma discrepancia",
         "La diferencia SWOT − mareógrafo sube y baja a la vez en la costa norte, se repite en las dos pasadas "
         "separadas 37 horas y sigue de cerca a la diferencia entre las dos predicciones de marea. Es una "
         "asociación, no una prueba de causa, pero señala dónde mirar.", numero=3, acento="#1b6ca8")
-    st.page_link("paginas/regional.py", label="Ver el patrón regional", icon=":material/arrow_forward:")
+    st.page_link("paginas/en/regional.py", label="Ver el patrón regional", icon=":material/arrow_forward:")
 
 st.markdown("### Qué significa para el gemelo digital")
 a, b = st.columns(2)
